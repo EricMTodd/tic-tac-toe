@@ -1,73 +1,68 @@
 const ticTacToe = ((doc) => {
-  if (doc) {
-    console.log("tic-tac-toe.js successfully loaded.");
-    let uniquePlayerId = 0;
-    let playerList = [];
-  
-    const createPlayer = (name) => {
-      let newPlayer = {
-        id: uniquePlayerId,
-        name,
-        wins: 0,
-        losses: 0,
-        created: Date(),
-      }
-      uniquePlayerId++;
-      console.log(`Adding ${newPlayer.name} to the playerList:`);
-      document.querySelector("#playerName").value = "";
-      playerList.push(newPlayer);
-      console.log(playerList);
-    };
-  
-    const welcome = (() => {
-      // Display welcome page/leaderboard
-      let mainDiv = document.querySelector("#main");
-      // Check local storage for users.
-      if (!localStorage.ticTacToe) {
-        localStorage.setItem("ticTacToe", "");
-        console.log("Displaying initial welcome page.");
-        mainDiv.innerHTML = `
-        <div id="initial-landing-page">
-          <form>
-            <fieldset>
-              <legend>
-                Create New User
-              </legend>
-              <br>
-              <input id="playerName" placeholder="Name">
-              <br><br>
-              <button type="button" onclick=(ticTacToe.createPlayer(document.querySelector("#playerName").value))>Submit</button>
-            </fieldset>
-          </form>
-        </div>
-        `;
-      } else {
-        console.log("Displaying registered users.");
-      }
-      // If users are present, display leaderboard.
-      // Else, ask to create a user!
-    })();
-  
-    const gameLoop = () => {
-      // Game logic for placing symbols goes here!
-    };
-  
-    const endTurn = () => {
-      // Logic for switching symbols and player turns.
-    };
-  
-    const evaluateRound = () => {
-      // Check for win condition
-    };
-  
-    return {
-      createPlayer,
-      playerList,
-    };
-  } else {
-    console.log("Loading document...");
+  console.log("tic-tac-toe.js successfully loaded.");
+  let uniquePlayerId = 0;
+  let playerList = [];
+
+  const createPlayer = (name) => {
+    let newPlayer = {
+      id: uniquePlayerId,
+      name,
+      wins: 0,
+      losses: 0,
+      created: Date(),
+    }
+    uniquePlayerId++;
+    console.log(`Adding ${newPlayer.name} to the playerList:`);
+    document.querySelector("#playerName").value = "";
+    playerList.push(newPlayer);
+    console.log(playerList);
   };
 
+  const welcome = (() => {
+    // Display welcome page/leaderboard
+    let mainDiv = document.querySelector("#main");
+    // Check local storage for users.
+    if (!localStorage.ticTacToe) {
+      localStorage.setItem("ticTacToe", "");
+      console.log("Displaying initial welcome page.");
+      mainDiv.innerHTML = `
+      <div id="initial-landing-page">
+        <form>
+          <fieldset>
+            <legend>
+              Create New User
+            </legend>
+            <br>
+            <input id="playerName" placeholder="Name">
+            <br><br>
+            <button type="button" onclick=(ticTacToe.createPlayer(document.querySelector("#playerName").value))>Submit</button>
+          </fieldset>
+        </form>
+      </div>
+      `;
+    } else {
+      console.log("Displaying registered users.");
+    }
+    // If users are present, display leaderboard.
+    // Else, ask to create a user!
+  })();
+
+  const gameLoop = () => {
+    // Game logic for placing symbols goes here!
+  };
+
+  const endTurn = () => {
+    // Logic for switching symbols and player turns.
+  };
+
+  const evaluateRound = () => {
+    // Check for win condition
+  };
+
+  return {
+    createPlayer,
+    playerList,
+  };
 })(document);
 
 const storageOperators = ((obj) => {
