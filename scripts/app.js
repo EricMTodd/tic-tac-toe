@@ -28,7 +28,7 @@ const app = ((doc) => {
     let library = {
       initialVisit: true,
       uniqueId: 3,
-      catalogue: {}
+      catalogue: []
     }
   
     return {
