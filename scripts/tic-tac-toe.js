@@ -1,6 +1,5 @@
 const ticTacToe = (() => {
   console.log("tic-tac-toe.js successfully loaded.");
-  let gameObject = localStorage.ticTacToe;
   let playerList = [];
 
   const player = (name) => {
@@ -17,7 +16,6 @@ const ticTacToe = (() => {
     // Display welcome page/leaderboard
     let mainDiv = document.querySelector("#main");
     // Check local storage for users.
-    console.log(localStorage);
     // If users are present, display leaderboard.
     // Else, ask to create a user!
   })();
