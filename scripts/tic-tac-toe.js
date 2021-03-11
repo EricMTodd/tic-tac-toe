@@ -35,7 +35,7 @@ const ticTacToe = ((doc) => {
         </div>
         `;
       } else {
-        console.log("Hmmmm...");
+        console.log("Displaying registered users.");
       }
       // If users are present, display leaderboard.
       // Else, ask to create a user!
@@ -54,9 +54,8 @@ const ticTacToe = ((doc) => {
     }
   
     return {
-      playerList,
-      player,
-      welcome,
+      // playerList,
+      // player,
     }
   } else {
     console.log("Loading document...");
