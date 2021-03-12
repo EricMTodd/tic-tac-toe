@@ -35,7 +35,7 @@ const ticTacToe = ((doc) => {
             <br>
             <input id="playerName" placeholder="Name">
             <br><br>
-            <button type="button" onclick=(ticTacToe.createPlayer(document.querySelector("#playerName").value))>Submit</button>
+            <button id="create-player-button" type="button">Submit</button>
           </fieldset>
         </form>
       </div>
@@ -45,6 +45,11 @@ const ticTacToe = ((doc) => {
     }
     // If users are present, display leaderboard.
     // Else, ask to create a user!
+  })();
+
+  const activateCreatePlayerButton = (() => {
+    let btn = document.querySelector("#create-player-button");
+    return btn.addEventListener("click", createPlayer(document.querySelector("#playerName").value))
   })();
 
   const gameLoop = () => {
@@ -60,8 +65,9 @@ const ticTacToe = ((doc) => {
   };
 
   return {
-    createPlayer,
+    // createPlayer,
     playerList,
+    activateCreatePlayerButton,
   };
 })(document);
 
@@ -72,7 +78,7 @@ const storageOperators = ((obj) => {
   //   let stringifiedTicTacToeObject = JSON.stringify(ticTacToe);
   //   return stringifiedTicTacToeObject;
   // };
-  
+
   // const parseLocalStorage = (stringifiedTicTacToeObject) => {
   //   // Parse the string store in localStorage.ticTacToe
   //   let parsedTicTacToeObject = JSON.parse(stringifiedTicTacToeObject);
