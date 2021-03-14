@@ -30,7 +30,7 @@ let storageController = (() => {
   })();
 
   return {
-    storageObjectModel,
+    // storageObjectModel,
   }
 })();
 
