@@ -11,11 +11,19 @@
 
 <body>
   <main>
+    <br>
+    <div id="leaderboard-container">
+      <h1>Leaderboard</h1>
+      <a href="views/login.html">Create New User</a>
+      <br>
+      <br>
+      <button onclick="localStorage.clear(), location.reload()">Clear LocalStorage</button>
+      <ul id="leaderboard-users-list"></ul>
+    </div>
   </main>
   <script src="models/storage.js"></script>
   <script src="controllers/storage.js"></script>
-  <script src="models/user.js"></script>
-  <script src="views/landingPage.js"></script>
+  <script src="scripts/landingPage.js"></script>
 </body>
 
 </html>
