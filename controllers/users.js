@@ -4,12 +4,6 @@ const usersController = (() => {
     let obj = JSON.parse(localStorage.ticTacToe);
     let leaderboardUsersList = document.querySelector("#leaderboard-users-list");
 
-    let newUser = {
-      id: obj.uniqueId,
-      name,
-      wins: 0,
-      created: Date(),
-    };
 
     if (name != "") {
       ((newUser, obj) => {
@@ -31,6 +25,6 @@ const usersController = (() => {
     }
   }
   return {
-    createUser,
+    // createUser,
   }
 })();
