@@ -6,9 +6,9 @@ Project link: https://theodinproject.com/courses/javascript/lessons/tic-tac-toe-
 
 ## UX Flow
 
-- Welcome screen/leaderboard
-- If no players, show create user buttons
+- Welcome screen/leaderboard (Sketch complete)
 - Singleplayer or Multiplayer?
+- Create user/
 - Gameboard and core game loop
 - Post game evaluation
 - Play again?
