@@ -1,7 +1,7 @@
 let storageController = (() => {
 
   let storageObjectModel = {
-    uniqueId: 3,
+    uniqueId: 0,
     usersList: [],
   };
 
