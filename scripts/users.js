@@ -13,7 +13,6 @@ const usersController = (() => {
 
     if (name != "") {
       ((newUser, obj) => {
-        console.log(`Adding ${newUser.name} to the database`);
         obj.usersList.push(newUser);
         obj.uniqueId++;
         let str = JSON.stringify(obj);

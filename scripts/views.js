@@ -5,14 +5,16 @@ const viewsController = (() => {
     return main.innerHTML = `
       <div id="landing-page-container">
         <div id="create-new-user-form">
-          <form>
+          <form onsubmit="document.querySelector('#create-new-user-button').click()">
             <fieldset>
               <legend>Create New User</legend>
               <input id="create-new-user-name-input" placeholder="Name">
-              <button type="button" onclick="usersController.createUser(document.querySelector('#create-new-user-name-input').value)">Submit</button>
+              <button id="create-new-user-button" type="button" onclick="usersController.createUser(document.querySelector('#create-new-user-name-input').value)">Submit</button>
             </fieldset>
           </form>
         </div>
+        <br>
+        <button onclick="localStorage.clear(), location.reload()">Clear LocalStorage</button>
         <br>
         <div id="leaderboard-container">
           <h1>Leaderboard</h1>
