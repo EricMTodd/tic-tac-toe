@@ -9,7 +9,3 @@ let storageController = (() => {
   return {
   }
 })();
-
-const testFunction = () => {
-  console.log("testFunction");
-};
