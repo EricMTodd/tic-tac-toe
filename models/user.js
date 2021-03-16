@@ -1,6 +1,6 @@
 const user = {
-  id: this.id,
-  name: this.name,
+  id: null,
+  name: null,
   wins: 0,
   created: Date(),
 };

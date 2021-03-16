@@ -21,7 +21,7 @@
       <form onsubmit="document.querySelector('#create-new-user-button').click()">
         <fieldset>
           <legend>Create New User</legend>
-          <input id="create-new-user-name-input" placeholder="Name">
+          <input autocomplete="off" id="create-new-user-name-input" placeholder="Name">
           <button id="create-new-user-button" type="button"
             onclick="usersController.createUser(document.querySelector('#create-new-user-name-input').value)">Submit</button>
         </fieldset>
