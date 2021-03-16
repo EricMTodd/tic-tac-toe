@@ -20,4 +20,6 @@ const storageObjectModel = {
       created: "3/15",
     }
   ],
+  activePlayerOne: null,
+  activePlayerTwo: null,
 };

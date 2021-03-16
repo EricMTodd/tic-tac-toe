@@ -8,6 +8,7 @@ Project link: https://theodinproject.com/courses/javascript/lessons/tic-tac-toe-
 
 - Landing page/leaderboard (Sketch complete)
 - User login/create user
+- Password encryption and storage
 - Singleplayer (Disabled atm)/Multiplayer
 - Gameboard and core game loop
 - Post game evaluation
