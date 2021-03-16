@@ -2,6 +2,8 @@ const viewsController = (() => {
   const renderLeaderboard = (() => {
     let leaderboardUsersList = document.querySelector("#leaderboard-users-list");
     let obj = JSON.parse(localStorage.ticTacToe);
+
+    // Loop over users and display them
     for (let i = 0; i < obj.usersList.length; i++) {
       let userListItem = document.createElement("li");
       userListItem.id = obj.usersList[i].id;
@@ -13,6 +15,5 @@ const viewsController = (() => {
 
   return {
     renderLeaderboard,
-  }
-
+  };
 })();
