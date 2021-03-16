@@ -11,7 +11,7 @@ const usersController = (() => {
         const newUser = Object.create(user);
         newUser.id = obj.uniqueId;
         newUser.name = name;
-        newUser.password = password;
+        newUser.password = encryptionController.generateSalt(password);
         newUser.wins = user.wins;
         newUser.created = user.created;
   
