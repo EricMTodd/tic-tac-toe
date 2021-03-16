@@ -1,35 +1,24 @@
 const usersController = (() => {
 
   const createUser = (name) => {
-    // let obj = JSON.parse(localStorage.ticTacToe);
-    // let leaderboardUsersList = document.querySelector("#leaderboard-users-list");
-
-    // Create new user with prototypal inheritance and con
-    let newUser = ({ user }) => {
-      console.log(user)
-    }
-
+    let obj = JSON.parse(localStorage.ticTacToe);
     // if (name != "") {
-    //   ((newUser, obj) => {
-    //     obj.usersList.push(newUser);
-    //     obj.uniqueId++;
-    //     let str = JSON.stringify(obj);
-    //     localStorage.setItem("ticTacToe", str);
-    //     return document.querySelector("#create-new-user-name-input").value = "";
-    //   })(newUser, obj);
+    ((obj) => {
+      let newUser = Object.create(user);
+      newUser.id = obj.uniqueId;
+      newUser.name = name;
+      newUser.wins = user.wins;
+      newUser.created = user.created;
 
-    //   ((newUser, leaderboardUsersList) => {
-    //     let userListItem = document.createElement("li");
-    //     userListItem.id = newUser.id;
-    //     userListItem.innerText = newUser.name;
-    //     return leaderboardUsersList.appendChild(userListItem);
-    //   })(newUser, leaderboardUsersList);
+      obj.usersList.push(newUser);
+      obj.uniqueId++;
+      let str = JSON.stringify(obj);
+      localStorage.setItem("ticTacToe", str);
+      return document.querySelector("#create-new-user-name-input").value = "";
+    })(obj);
     // } else {
     //   alert("Please enter a valid username.")
     // }
-    return {
-      newUser,
-    }
   }
   return {
     createUser,

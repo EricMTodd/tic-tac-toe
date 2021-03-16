@@ -1,5 +1,5 @@
-let storageObjectModel = {
-  uniqueId: 0,
+const storageObjectModel = {
+  uniqueId: 3,
   usersList: [
     {
       id: 0,
