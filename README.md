@@ -7,8 +7,8 @@ Project link: https://theodinproject.com/courses/javascript/lessons/tic-tac-toe-
 ## UX Flow
 
 - Landing page/leaderboard (Sketch complete)
-- Singleplayer (Disabled atm)/Multiplayer
 - User login/create user
+- Singleplayer (Disabled atm)/Multiplayer
 - Gameboard and core game loop
 - Post game evaluation
 - Play again?/back to leaderboard
