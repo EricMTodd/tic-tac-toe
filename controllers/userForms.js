@@ -9,9 +9,9 @@ const userFormsController = (() => {
           <legend>Create New User</legend>
           <input autocomplete="off" id="create-new-user-name-input" placeholder="Name">
           <br>
-          <input autocomplete="off" id="create-new-user-password-input" placeholder="Password">
+          <input type="password" autocomplete="off" id="create-new-user-password-input" placeholder="Password">
           <br>
-          <input autocomplete="off" id="confirm-new-user-password-input" placeholder="Confirm password">
+          <input type="password" autocomplete="off" id="confirm-new-user-password-input" placeholder="Confirm password">
           <br>
           <button id="create-new-user-button" type="button"
             onclick="usersController.createUser(document.querySelector('#create-new-user-name-input').value, document.querySelector('#create-new-user-password-input').value, document.querySelector('#confirm-new-user-password-input').value)">Submit</button>
@@ -30,7 +30,7 @@ const userFormsController = (() => {
             <legend>Login</legend>
             <input disabled autocomplete="off" type="text" placeholder="name">
             <br>
-            <input disabled autocomplete="off" type="text" placeholder="password">
+            <input type="password" disabled autocomplete="off" type="text" placeholder="password">
             <br>
             <button disabled id="login-button" type="button" onclick="console.log('click')")>Login</button>
           </fieldset>
