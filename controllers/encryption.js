@@ -3,19 +3,16 @@ const encryptionController = (() => {
 
   const generateEncryptedPassword = (password) => {
     let passwordKey = [];
-    // console.log(`password: ${password}\nsalt: ${salt}\nsaltKey:`, saltKey);
 
     // Create password key
     for (let i = 0; i < password.length; i++) {
-      // console.log(password[i]);
       for (let k = 0; k < alphanumerics.length; k++) {
-        // console.log(alphanumerics[k]);
         if (password[i] == alphanumerics[k]) {
-          // console.log(`Match\n${alphanumerics[k]} index: ${k}`);
           passwordKey.push(k);
         }
       }
     };
+    console.log(`generateEncrypedPassword.passwordKey: ${passwordKey}`);
     return generateSalt(passwordKey);
   };
 
@@ -24,10 +21,11 @@ const encryptionController = (() => {
     let saltKey = [];
     let salt = "";
     for (let i = 0; i < saltLength; i++) {
-      let randomNumber = Math.floor(Math.random() * alphanumerics.length) + 1;
+      let randomNumber = Math.floor(Math.random() * alphanumerics.length);
       saltKey.push(randomNumber);
       salt += alphanumerics[randomNumber];
     };
+    console.log(`generateSalt.passwordKey: ${passwordKey}\ngenerateSalt.saltKey: ${saltKey}\ngenerateSalt.salt: ${salt}`);
     return saltPassword(passwordKey, saltKey, salt);
   };
 
@@ -38,18 +36,28 @@ const encryptionController = (() => {
     // Encrypt password
     for (let i = 0; i < passwordKey.length; i++) {
       let encryptionIndex = passwordKey[i] + saltKey[i];
+      console.log(`encryptionIndex: ${encryptionIndex}`);
       if (encryptionIndex > alphanumerics.length) {
         encryptionIndex -= alphanumerics.length;
+        console.log(`subtracted encryptionIndex: ${encryptionIndex}`);
       }
       encryptedPassword += alphanumerics[encryptionIndex];
     }
-    // console.log(`encryptedPassword: ${encryptedPassword + salt}`);
-    return saltedPassword = encryptedPassword + salt;
+    console.log(`encryptedPassword: ${encryptedPassword}`);
+    saltedPassword = encryptedPassword + salt;
+    console.log(`saltedPassword: ${saltedPassword}`);
+    return saltedPassword
+
   }
 
   const decryptPassword = () => { };
 
+  const init = (() => {
+    console.log(generateEncryptedPassword("testString"));
+  })();
+
   return {
     generateEncryptedPassword,
+    alphanumerics,
   };
 })();
