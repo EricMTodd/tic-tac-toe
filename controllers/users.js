@@ -11,10 +11,10 @@ const usersController = (() => {
         const newUser = Object.create(user);
         newUser.id = obj.uniqueId;
         newUser.name = name;
-        newUser.password = encryptionController.generateSalt(password);
+        newUser.password = encryptionController.generateEncryptedPassword(password);
         newUser.wins = user.wins;
         newUser.created = user.created;
-  
+
         // Store newUser object in localStorage
         obj.usersList.push(newUser);
         obj.uniqueId++;
