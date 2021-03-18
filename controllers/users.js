@@ -47,7 +47,8 @@ const usersController = (() => {
     for (let i = 0; i < storageObject.usersList.length; i++) {
       if (email == storageObject.usersList[i].email) {
         console.log(storageObject.usersList[i].name);
-        return encryptionController.decryptPassword(document.querySelector("#login-password-input").value);
+        let user = storageObject.usersList[i];
+        return encryptionController.decryptPassword(user, document.querySelector("#login-password-input").value);
       };
     };
   };

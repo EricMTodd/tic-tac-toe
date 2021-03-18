@@ -44,10 +44,21 @@ const encryptionController = (() => {
 
   }
 
-  const decryptPassword = (password) => {
+  const decryptPassword = (user, password) => {
+    let saltedPassword = user.password;
+    let encryptedPassword = "";
     let salt = "";
-    return console.log(password);
     // Split encrypted string at length of password
+    for (let i = 0; i < password.length; i++) {
+      encryptedPassword += saltedPassword[i];
+    }
+    let saltIndex = password.length - 1;
+    for (let i = saltIndex; i < saltedPassword.length; i++) {
+      salt += saltedPassword[i];
+    }
+    console.log(`saltedPassword:${saltedPassword}`);
+    console.log(`encryptedPassword:${encryptedPassword}`);
+    console.log(`salt:${salt}`);
     // Use salt as keyWord to generate a keyArray
     // Use keyArray to unshift the scrambled password
   };
