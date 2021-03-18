@@ -1,9 +1,10 @@
 const usersController = (() => {
-  const obj = JSON.parse(localStorage.ticTacToe);
-  console.log(obj);
+  const storageObject = JSON.parse(localStorage.ticTacToe);
+  console.log(storageObject);
+
   const createUser = (name, email, password, confirmPassword) => {
-    for (let i = 0; i < obj.usersList.length; i++) {
-      if (email == obj.usersList[i].email) {
+    for (let i = 0; i < storageObject.usersList.length; i++) {
+      if (email == storageObject.usersList[i].email) {
         alert("A user with this email already exists.");
         return;
       }
@@ -16,7 +17,7 @@ const usersController = (() => {
       if (password == confirmPassword) {
         // Create newUser object
         const newUser = Object.create(user);
-        newUser.id = obj.uniqueId;
+        newUser.id = storageObject.uniqueId;
         newUser.name = name;
         newUser.email = email;
         newUser.password = encryptionController.generateEncryptedPassword(password);
@@ -24,9 +25,9 @@ const usersController = (() => {
         newUser.created = user.created;
 
         // Store newUser object in localStorage
-        obj.usersList.push(newUser);
-        obj.uniqueId++;
-        const str = JSON.stringify(obj);
+        storageObject.usersList.push(newUser);
+        storageObject.uniqueId++;
+        const str = JSON.stringify(storageObject);
         localStorage.setItem("ticTacToe", str);
         document.querySelector("#create-new-user-name-input").value = "";
         document.querySelector("#create-new-user-email-input").value = "";
@@ -42,8 +43,18 @@ const usersController = (() => {
     };
   };
 
+  const findUser = (email) => {
+    for (let i = 0; i < storageObject.usersList.length; i++) {
+      if (email == storageObject.usersList[i].email) {
+        console.log(storageObject.usersList[i].name);
+        return encryptionController.decryptPassword(document.querySelector("#login-password-input").value);
+      };
+    };
+  };
+
   return {
     createUser,
-    obj,
+    findUser,
+    // storageObject,
   };
 })();

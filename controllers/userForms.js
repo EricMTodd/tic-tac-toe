@@ -30,13 +30,11 @@ const userFormsController = (() => {
         <form">
           <fieldset>
             <legend>Login</legend>
-            <input disabled autocomplete="off" type="text" placeholder="Name">
+            <input id="login-email-input" autocomplete="off" placeholder="Email">
             <br>
-            <input disabled autocomplete="off" type="email" placeholder="Email">
+            <input id="login-password-input" type="password" autocomplete="off" type="text" placeholder="Password">
             <br>
-            <input type="password" disabled autocomplete="off" type="text" placeholder="Password">
-            <br>
-            <button disabled id="login-button" type="button" onclick="console.log('click')")>Login</button>
+            <button id="login-button" type="button" onclick="usersController.findUser(document.querySelector('#login-email-input').value)")>Login</button>
           </fieldset>
         </form>
         <p>Need an account?</p><button type="button" onclick="userFormsController.renderCreateUserForm()">Create Account</button>

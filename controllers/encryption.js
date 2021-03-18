@@ -46,6 +46,7 @@ const encryptionController = (() => {
 
   const decryptPassword = (password) => {
     let salt = "";
+    return console.log(password);
     // Split encrypted string at length of password
     // Use salt as keyWord to generate a keyArray
     // Use keyArray to unshift the scrambled password
@@ -53,6 +54,6 @@ const encryptionController = (() => {
 
   return {
     generateEncryptedPassword,
-    // decryptPassword,
+    decryptPassword,
   };
 })();
