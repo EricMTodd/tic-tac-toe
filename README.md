@@ -7,8 +7,9 @@ Project link: https://theodinproject.com/courses/javascript/lessons/tic-tac-toe-
 ## UX Flow
 
 - Landing page/leaderboard (Sketch complete)
-- User login/create user
-- Password encryption and storage
+- User login/create user (Sketch complete)
+- Password encryption and storage (Sketch complete)
+- Password decryption and login
 - Singleplayer (Disabled atm)/Multiplayer
 - Gameboard and core game loop
 - Post game evaluation

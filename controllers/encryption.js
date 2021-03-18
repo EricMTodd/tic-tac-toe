@@ -40,13 +40,19 @@ const encryptionController = (() => {
       encryptedPassword += alphanumerics[encryptionIndex];
     }
     saltedPassword = encryptedPassword + salt;
-    return saltedPassword
+    return saltedPassword;
 
   }
 
-  const decryptPassword = () => { };
+  const decryptPassword = (password) => {
+    let salt = "";
+    // Split encrypted string at length of password
+    // Use salt as keyWord to generate a keyArray
+    // Use keyArray to unshift the scrambled password
+  };
 
   return {
     generateEncryptedPassword,
+    // decryptPassword,
   };
 })();

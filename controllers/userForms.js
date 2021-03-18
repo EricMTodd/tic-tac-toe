@@ -7,14 +7,16 @@ const userFormsController = (() => {
       <form">
         <fieldset>
           <legend>Create New User</legend>
-          <input autocomplete="off" id="create-new-user-name-input" placeholder="Name">
+          <input type="text" autocomplete="off" id="create-new-user-name-input" placeholder="Name">
+          <br>
+          <input type="email" autocomplete="off" id="create-new-user-email-input" placeholder="Email">
           <br>
           <input type="password" autocomplete="off" id="create-new-user-password-input" placeholder="Password">
           <br>
           <input type="password" autocomplete="off" id="confirm-new-user-password-input" placeholder="Confirm password">
           <br>
           <button id="create-new-user-button" type="button"
-            onclick="usersController.createUser(document.querySelector('#create-new-user-name-input').value, document.querySelector('#create-new-user-password-input').value, document.querySelector('#confirm-new-user-password-input').value)">Submit</button>
+            onclick="usersController.createUser(document.querySelector('#create-new-user-name-input').value, document.querySelector('#create-new-user-email-input').value, document.querySelector('#create-new-user-password-input').value, document.querySelector('#confirm-new-user-password-input').value)">Submit</button>
         </fieldset>
       </form>
       <p>Already have an account?</p><button type="button" onclick="userFormsController.renderLoginForm()">Login</button>
@@ -28,9 +30,11 @@ const userFormsController = (() => {
         <form">
           <fieldset>
             <legend>Login</legend>
-            <input disabled autocomplete="off" type="text" placeholder="name">
+            <input disabled autocomplete="off" type="text" placeholder="Name">
             <br>
-            <input type="password" disabled autocomplete="off" type="text" placeholder="password">
+            <input disabled autocomplete="off" type="email" placeholder="Email">
+            <br>
+            <input type="password" disabled autocomplete="off" type="text" placeholder="Password">
             <br>
             <button disabled id="login-button" type="button" onclick="console.log('click')")>Login</button>
           </fieldset>

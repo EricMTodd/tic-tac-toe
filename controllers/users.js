@@ -1,6 +1,13 @@
 const usersController = (() => {
-  const createUser = (name, password, confirmPassword) => {
-    const obj = JSON.parse(localStorage.ticTacToe);
+  const obj = JSON.parse(localStorage.ticTacToe);
+  console.log(obj);
+  const createUser = (name, email, password, confirmPassword) => {
+    for (let i = 0; i < obj.usersList.length; i++) {
+      if (email == obj.usersList[i].email) {
+        alert("A user with this email already exists.");
+        return;
+      }
+    }
     name = name.trim();
     password = password.trim();
     confirmPassword.trim();
@@ -11,6 +18,7 @@ const usersController = (() => {
         const newUser = Object.create(user);
         newUser.id = obj.uniqueId;
         newUser.name = name;
+        newUser.email = email;
         newUser.password = encryptionController.generateEncryptedPassword(password);
         newUser.wins = user.wins;
         newUser.created = user.created;
@@ -21,6 +29,7 @@ const usersController = (() => {
         const str = JSON.stringify(obj);
         localStorage.setItem("ticTacToe", str);
         document.querySelector("#create-new-user-name-input").value = "";
+        document.querySelector("#create-new-user-email-input").value = "";
         document.querySelector("#create-new-user-password-input").value = "";
         document.querySelector("#confirm-new-user-password-input").value = "";
         alert(`${name} added to the database!`)
@@ -35,5 +44,6 @@ const usersController = (() => {
 
   return {
     createUser,
+    obj,
   };
 })();
