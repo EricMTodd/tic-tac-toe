@@ -60,19 +60,45 @@ const encryptionController = (() => {
     console.log(`encryptedPassword:${encryptedPassword}`);
     console.log(`salt:${salt}`);
 
-    // let shiftKey = [];
-    // let decryptedPassword = "";
-    // for (let i = 0; i < password.length; i++) {
-    //   for (let k = 0; i < alphanumerics.length; k++) {
-    //     if (password[i] == alphanumerics[k]) {
-    //       shiftKey += k;
-    //     }
-    //   }
-    // }
-    // console.log(shiftKey);
+    let shiftKey = [];
+    // Establish shiftKey
+    for (let i = 0; i < password.length; i++) {
+      for (let k = 0; k < alphanumerics.length; k++) {
+        if (password[i] == alphanumerics[k]) {
+          console.log(`match\n ${alphanumerics[k]} index: ${k}`);
+          shiftKey.push(k);
+        };
+      };
+    };
+    console.log(shiftKey);
+
+    let shift = [];
+    for (let i = 0; i < encryptedPassword.length; i++) {
+      for (let k = 0; k < alphanumerics.length; k++) {
+        if (encryptedPassword[i] == alphanumerics[k]) {
+          console.log(`match\n ${alphanumerics[k]} index: ${k}`);
+          shift.push(k);
+        };
+      };
+    };
+    console.log(shift);
+
+    let decryptedPassword = "";
+    for (let i = 0; i < password.length; i++) {
+      shift[i] -= shiftKey[i]
+      if (shift[i] < 0) {
+        shift[i] += alphanumerics.length;
+      }
+      decryptedPassword += alphanumerics[i];
+    }
+    console.log(decryptedPassword);
+
   };
 
+
+
   return {
+    alphanumerics,
     generateEncryptedPassword,
     decryptPassword,
   };
