@@ -20,9 +20,6 @@ const encryptionController = (() => {
     // for (let i = 0; i < shift.length; i++) {
     //   if (i > shift.length)
     // }
-
-
-
   };
 
   const decrypt = () => {
