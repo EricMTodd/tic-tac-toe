@@ -20,7 +20,7 @@ const usersController = (() => {
         newUser.id = storageObject.uniqueId;
         newUser.name = name;
         newUser.email = email;
-        newUser.password = encryptionController.generateEncryptedPassword(password);
+        newUser.password = password;
         newUser.wins = user.wins;
         newUser.created = user.created;
 
@@ -46,9 +46,8 @@ const usersController = (() => {
   const findUser = (email) => {
     for (let i = 0; i < storageObject.usersList.length; i++) {
       if (email == storageObject.usersList[i].email) {
-        console.log(storageObject.usersList[i].name);
         let user = storageObject.usersList[i];
-        return encryptionController.decryptPassword(user, document.querySelector("#login-password-input").value);
+        return console.log(user);
       };
     };
   };
