@@ -43,11 +43,12 @@ const usersController = (() => {
     };
   };
 
-  const findUser = (email) => {
+  const findUser = (email, password) => {
     for (let i = 0; i < storageObject.usersList.length; i++) {
       if (email == storageObject.usersList[i].email) {
         let user = storageObject.usersList[i];
-        return console.log(user);
+        console.log(user);
+        return encryptionController.decrypt(password, user);
       };
     };
   };
