@@ -1,12 +1,11 @@
 const encryptionController = (() => {
   const alphanumerics = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  const key = "pilot";
 
-
-  const encrypt = (password) => {
+  const encrypt = (password, salt) => {
     let encryptedPassword = "";
     let passwordLettersIndexes = [];
-    let keyLettersIndexes = [];
+    let saltLettersIndexes = [];
+    let saltedEncryption = "";
     let shiftLettersIndexes = [];
 
     (() => {
@@ -23,17 +22,17 @@ const encryptionController = (() => {
 
 
     (() => {
-      for (let i = 0; i < key.length; i++) {
-        // console.log(key[i]);
+      for (let i = 0; i < salt.length; i++) {
+        // console.log(salt[i]);
         for (let j = 0; j < alphanumerics.length; j++) {
           // console.log(alphanumerics[j]);
-          if (key[i] == alphanumerics[j]) {
-            keyLettersIndexes.push(j);
-            console.log(`${key[i]}: ${j}`)
+          if (salt[i] == alphanumerics[j]) {
+            saltLettersIndexes.push(j);
+            console.log(`${salt[i]}: ${j}`)
           }
         }
       }
-      console.log(keyLettersIndexes);
+      console.log(saltLettersIndexes);
     })();
 
     (() => {
@@ -42,7 +41,7 @@ const encryptionController = (() => {
 
       while (i < password.length) {
 
-        let shiftedIndex = passwordLettersIndexes[i] + keyLettersIndexes[j];
+        let shiftedIndex = passwordLettersIndexes[i] + saltLettersIndexes[j];
 
         if (shiftedIndex > alphanumerics.length) {
           shiftedIndex -= alphanumerics.length;
@@ -60,7 +59,7 @@ const encryptionController = (() => {
           console.log(`i: ${i}`);
           i++;
         }
-        if (j < key.length - 1) {
+        if (j < salt.length - 1) {
           console.log(`j: ${j}`);
           j++;
         } else {
@@ -81,19 +80,48 @@ const encryptionController = (() => {
       }
     })();
 
-    return encryptedPassword;
-  // End of encrypt function
+    console.log(`encryptedPassword: ${encryptedPassword}\nsalt: ${salt}`);
+    saltedEncryption = encryptedPassword + salt;
+    return saltedEncryption;
+    // End of encrypt function
   };
 
+  const generateEncryption = (password) => {
+    // Make some salt yo
+    let saltLetterIndexes = [];
+    let salt = "";
 
+    // Generate saltKey
+    (() => {
+      let saltLength = Math.floor(Math.random() * 12) + 9;
+      console.log(`saltLength: ${saltLength}`);
+      for (let i = 0; i < saltLength; i++) {
+        saltLetterIndexes.push(Math.floor(Math.random() * alphanumerics.length) + 1);
+      }
+      console.log(saltLetterIndexes);
+    })();
+
+    // create salt from array
+    (() => {
+      for (let i = 0; i < saltLetterIndexes.length; i++) {
+        for (let j = 0; j < alphanumerics.length; j++) {
+          if (saltLetterIndexes[i] === j) {
+            salt += alphanumerics[j];
+          };
+        };
+      };
+      console.log(salt);
+    })();
+    return encrypt(password, salt);
+  }
 
 
   const decrypt = () => {
-    // Just use a static password and key for now.
+    // Just use a static password and salt for now.
   };
 
   return {
     alphanumerics,
-    encrypt,
+    generateEncryption,
   };
 })();

@@ -20,7 +20,7 @@ const usersController = (() => {
         newUser.id = storageObject.uniqueId;
         newUser.name = name;
         newUser.email = email;
-        newUser.password = encryptionController.encrypt(password);
+        newUser.password = encryptionController.generateEncryption(password);
         newUser.wins = user.wins;
         newUser.created = user.created;
 
