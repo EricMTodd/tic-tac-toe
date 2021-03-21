@@ -1,6 +1,5 @@
 const usersController = (() => {
   const storageObject = JSON.parse(localStorage.ticTacToe);
-  console.log(storageObject);
 
   const createUser = (name, email, password, confirmPassword) => {
     for (let i = 0; i < storageObject.usersList.length; i++) {
@@ -47,7 +46,6 @@ const usersController = (() => {
     for (let i = 0; i < storageObject.usersList.length; i++) {
       if (email == storageObject.usersList[i].email) {
         let user = storageObject.usersList[i];
-        console.log(user);
         return encryptionController.decrypt(password, user);
       };
     };

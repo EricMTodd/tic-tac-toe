@@ -2,39 +2,36 @@ const encryptionController = (() => {
   const alphanumerics = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
   const encrypt = (password, salt) => {
+    // Crucial variables
     let encryptedPassword = "";
     let passwordLettersIndexes = [];
     let saltLettersIndexes = [];
     let saltedEncryption = "";
     let shiftLettersIndexes = [];
 
+    // Build array of password letter indexes
     (() => {
       for (let i = 0; i < password.length; i++) {
         for (let j = 0; j < alphanumerics.length; j++) {
           if (password[i] == alphanumerics[j]) {
             passwordLettersIndexes.push(j);
-            // console.log(`${password[i]}: ${j}`)
           }
         }
       }
-      // console.log(passwordLettersIndexes);
     })();
 
-
+    // Build array of salt letter indexes
     (() => {
       for (let i = 0; i < salt.length; i++) {
-        // console.log(salt[i]);
         for (let j = 0; j < alphanumerics.length; j++) {
-          // console.log(alphanumerics[j]);
           if (salt[i] == alphanumerics[j]) {
             saltLettersIndexes.push(j);
-            // console.log(`${salt[i]}: ${j}`)
           }
         }
       }
-      // console.log(saltLettersIndexes);
     })();
 
+    // Build encryption shift array
     (() => {
       let i = 0;
       let j = 0;
@@ -45,31 +42,25 @@ const encryptionController = (() => {
 
         if (shiftedIndex > alphanumerics.length) {
           shiftedIndex -= alphanumerics.length;
-          // console.log("2nd round", shiftedIndex)
         } else {
-          // console.log("1st round", shiftedIndex);
         }
 
         shiftLettersIndexes.push(shiftedIndex);
 
         if (i < password.length - 1) {
-          // console.log(`i: ${i}`);
           i++;
         } else {
-          // console.log(`i: ${i}`);
           i++;
         }
         if (j < salt.length - 1) {
-          // console.log(`j: ${j}`);
           j++;
         } else {
-          // console.log(`j: ${j}`);
           j = 0;
         }
       }; // End of while loop
-      // console.log(`shiftLettersIndexes: ${shiftLettersIndexes}`);
     })();
 
+    // Generate full encryption
     (() => {
       for (let i = 0; i < password.length; i++) {
         for (let j = 0; j < alphanumerics.length; j++) {
@@ -80,25 +71,22 @@ const encryptionController = (() => {
       }
     })();
 
-    // console.log(`encryptedPassword: ${encryptedPassword}\nsalt: ${salt}`);
     saltedEncryption = encryptedPassword + salt;
     return saltedEncryption;
     // End of encrypt function
   };
 
   const generateEncryption = (password) => {
-    // Make some salt yo
+    // Make salt for encryption
     let saltLetterIndexes = [];
     let salt = "";
 
     // Generate saltKey
     (() => {
       let saltLength = Math.floor(Math.random() * 12) + 9;
-      // console.log(`saltLength: ${saltLength}`);
       for (let i = 0; i < saltLength; i++) {
         saltLetterIndexes.push(Math.floor(Math.random() * alphanumerics.length) + 1);
       }
-      // console.log(saltLetterIndexes);
     })();
 
     // create salt from array
@@ -110,7 +98,6 @@ const encryptionController = (() => {
           };
         };
       };
-      // console.log(salt);
     })();
     return encrypt(password, salt);
     // End of generateEnccryption function
@@ -118,7 +105,6 @@ const encryptionController = (() => {
 
 
   const decrypt = (password, user) => {
-    console.log(`password: ${password}\nuser.password: ${user.password}`);
     let encryptedPasswordLettersIndexes = [];
     let saltLettersIndexes = [];
     let shiftLettersIndexes = [];
@@ -132,13 +118,11 @@ const encryptionController = (() => {
       for (let i = 0; i < password.length; i++) {
         encryptedPassword += user.password[i];
       }
-      console.log(encryptedPassword);
 
       // Find salt
       for (let i = password.length; i < user.password.length; i++) {
         salt += user.password[i];
       }
-      console.log(salt);
     })();
 
     // Find indexes of letters in password and salt
@@ -150,7 +134,6 @@ const encryptionController = (() => {
           }
         }
       }
-      console.log(`encryptedPasswordLettersIndexes: ${encryptedPasswordLettersIndexes}`);
 
       for (let i = 0; i < salt.length; i++) {
         for (let j = 0; j < alphanumerics.length; j++) {
@@ -159,7 +142,6 @@ const encryptionController = (() => {
           }
         }
       }
-      console.log(`saltLettersIndexes: ${saltLettersIndexes}`);
     })();
 
 
@@ -174,29 +156,22 @@ const encryptionController = (() => {
 
         if (shiftedIndex < 0) {
           shiftedIndex += alphanumerics.length;
-          // console.log("2nd round", shiftedIndex)
         } else {
-          // console.log("1st round", shiftedIndex);
         }
 
         shiftLettersIndexes.push(shiftedIndex);
 
         if (i < password.length - 1) {
-          // console.log(`i: ${i}`);
           i++;
         } else {
-          // console.log(`i: ${i}`);
           i++;
         }
         if (j < salt.length - 1) {
-          // console.log(`j: ${j}`);
           j++;
         } else {
-          // console.log(`j: ${j}`);
           j = 0;
         }
       }; // End of while loop
-      console.log(`shiftLettersIndexes: ${shiftLettersIndexes}`);
     })();
 
     // Decrypt password using shift
@@ -208,10 +183,17 @@ const encryptionController = (() => {
           };
         };
       };
-      console.log(`decryptedPassword: ${decryptedPassword}`);
     })();
 
-
+    // Evaluate password
+    (() => {
+      if (password === decryptedPassword) {
+        console.log("Success!");
+      } else {
+        alert("Incorrect password.")
+      }
+      return decryptedPassword = "";
+    })();
     // End of decrypt function
   }
 
