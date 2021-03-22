@@ -26,8 +26,8 @@ const usersController = (() => {
         // Store newUser object in localStorage
         storageObject.usersList.push(newUser);
         storageObject.uniqueId++;
-        const str = JSON.stringify(storageObject);
-        localStorage.setItem("ticTacToe", str);
+        const storageString = JSON.stringify(storageObject);
+        localStorage.setItem("ticTacToe", storageString);
         document.querySelector("#create-new-user-name-input").value = "";
         document.querySelector("#create-new-user-email-input").value = "";
         document.querySelector("#create-new-user-password-input").value = "";
