@@ -188,7 +188,7 @@ const encryptionController = (() => {
     // Evaluate password
     (() => {
       if (password === decryptedPassword) {
-        console.log("Success!");
+        loginController.login(user);
       } else {
         alert("Incorrect password.")
       }
