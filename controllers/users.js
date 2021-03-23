@@ -46,8 +46,11 @@ const usersController = (() => {
             console.log(newUser);
             alert(`${name} has been added to the database!`);
 
-            // Clear input fields
-            location.reload();
+            // Login
+            storageObject.activePlayerOne = newUser;
+            storageString = JSON.stringify(storageObject);
+            localStorage.setItem("ticTacToe", storageString);
+            window.location.replace('../index.html');
           } else {
             alert("Passwords do not match.");
           };
