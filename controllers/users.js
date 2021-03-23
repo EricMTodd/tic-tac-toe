@@ -1,47 +1,6 @@
 const usersController = (() => {
   const storageObject = JSON.parse(localStorage.ticTacToe);
 
-  const createUser = (name, email, password, confirmPassword) => {
-    for (let i = 0; i < storageObject.usersList.length; i++) {
-      if (email == storageObject.usersList[i].email) {
-        alert("A user with this email already exists.");
-        return;
-      }
-    }
-    name = name.trim();
-    password = password.trim();
-    confirmPassword.trim();
-    // Authorize clean data
-    if (name != "" && password != "") {
-      if (password == confirmPassword) {
-        // Create newUser object
-        const newUser = Object.create(user);
-        newUser.id = storageObject.uniqueId;
-        newUser.name = name;
-        newUser.email = email;
-        newUser.password = encryptionController.generateEncryption(password);
-        newUser.wins = user.wins;
-        newUser.created = user.created;
-
-        // Store newUser object in localStorage
-        storageObject.usersList.push(newUser);
-        storageObject.uniqueId++;
-        const storageString = JSON.stringify(storageObject);
-        localStorage.setItem("ticTacToe", storageString);
-        document.querySelector("#create-new-user-name-input").value = "";
-        document.querySelector("#create-new-user-email-input").value = "";
-        document.querySelector("#create-new-user-password-input").value = "";
-        document.querySelector("#confirm-new-user-password-input").value = "";
-        alert(`${name} added to the database!`)
-      } else {
-        alert("Passwords do not match.");
-      };
-      return;
-    } else {
-      alert("Please fill out all form fields.")
-    };
-  };
-
   const findUser = (email, password) => {
     for (let i = 0; i < storageObject.usersList.length; i++) {
       if (email == storageObject.usersList[i].email) {
@@ -51,9 +10,53 @@ const usersController = (() => {
     };
   };
 
+  const createUser = (name, email, password, confirmPassword) => {
+    // Check to see if email is already in use
+      for (let i = 0; i < storageObject.usersList.length; i++) {
+        if (email === storageObject.usersList[i].email) {
+          return alert("A user with this email already exists.");
+        };
+      };
+        
+        // Create new user object
+        let newUser = Object.create(user);
+        // Clean up data
+        name = name.trim();
+        password = password.trim();
+        confirmPassword.trim();
+
+        // Verify clean data
+        if (name === "" || email === "" || password === "" || confirmPassword === "") {
+          return  alert("Please fill out all form fields");
+        } else {
+          if (password === confirmPassword) {
+            // Assign object properties
+            newUser.id = storageObject.uniqueId;
+            newUser.name = name;
+            newUser.email = email;
+            newUser.password = encryptionController.generateEncryption(password);
+            newUser.wins = user.wins;
+            newUser.created = user.created;
+
+            // Add new user to the database
+            storageObject.uniqueId++;
+            storageObject.usersList.push(newUser);
+            let storageString = JSON.stringify(storageObject);
+            localStorage.setItem("ticTacToe", storageString);
+            console.log(newUser);
+            alert(`${name} has been added to the database!`);
+
+            // Clear input fields
+            location.reload();
+          } else {
+            alert("Passwords do not match.");
+          };
+        };
+    // End of createUser function
+  };
+
   return {
     createUser,
     findUser,
-    // storageObject,
   };
 })();
