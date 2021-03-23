@@ -1,9 +1,9 @@
 const usersController = (() => {
   const storageObject = JSON.parse(localStorage.ticTacToe);
 
-  const findUser = (email) => {
+  const findUser = (email, password) => {
     for (let i = 0; i < storageObject.usersList.length; i++) {
-      if (email == storageObject.usersList[i].email) {
+      if (email === storageObject.usersList[i].email) {
         let user = storageObject.usersList[i];
         return user;
       } else {
