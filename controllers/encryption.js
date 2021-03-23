@@ -103,7 +103,6 @@ const encryptionController = (() => {
     // End of generateEnccryption function
   }
 
-
   const decrypt = (password, user) => {
     let encryptedPasswordLettersIndexes = [];
     let saltLettersIndexes = [];
@@ -143,7 +142,6 @@ const encryptionController = (() => {
         }
       }
     })();
-
 
     // Decrypt password using salt as the key
     (() => {
@@ -188,7 +186,13 @@ const encryptionController = (() => {
     // Evaluate password
     (() => {
       if (password === decryptedPassword) {
-        loginController.login(user);
+        let storageObject = JSON.parse(localStorage.ticTacToe);
+        console.log(`user.name: ${user.name}`);
+        storageObject.activePlayerOne = user;
+        storageString = JSON.stringify(storageObject);
+        localStorage.setItem("ticTacToe", storageString);
+        window.location.replace('../index.html');
+        return;
       } else {
         alert("Incorrect password.")
       }

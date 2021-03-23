@@ -34,7 +34,7 @@ const userFormsController = (() => {
             <br>
             <input id="login-password-input" type="password" autocomplete="off" type="text" placeholder="Password">
             <br>
-            <button id="login-button" type="button" onclick="return usersController.findUser(document.querySelector('#login-email-input').value, document.querySelector('#login-password-input').value)")>Login</button>
+            <button id="login-button" type="button" onclick="loginController.login(document.querySelector('#login-email-input').value, document.querySelector('#login-password-input').value)")>Login</button>
           </fieldset>
         </form>
         <p>Need an account?</p><button type="button" onclick="userFormsController.renderCreateUserForm()">Create Account</button>

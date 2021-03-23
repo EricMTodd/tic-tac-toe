@@ -1,12 +1,8 @@
 const loginController = (() => {
-  let storageObject = JSON.parse(localStorage.ticTacToe);
   
-
-  const login = (user) => {
-    storageObject.activePlayerOne = user;
-    storageString = JSON.stringify(storageObject);
-    localStorage.setItem("ticTacToe", storageString);
-    window.location.replace('../index.html');
+  const login = (email, password) => {
+    let user = usersController.findUser(email);
+    encryptionController.decrypt(password, user);
   };
 
   const logout = () => {

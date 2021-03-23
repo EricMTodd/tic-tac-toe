@@ -1,11 +1,13 @@
 const usersController = (() => {
   const storageObject = JSON.parse(localStorage.ticTacToe);
 
-  const findUser = (email, password) => {
+  const findUser = (email) => {
     for (let i = 0; i < storageObject.usersList.length; i++) {
       if (email == storageObject.usersList[i].email) {
         let user = storageObject.usersList[i];
-        return encryptionController.decrypt(password, user);
+        return user;
+      } else {
+        alert("User does not exist.");
       };
     };
   };
