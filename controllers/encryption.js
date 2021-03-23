@@ -187,7 +187,6 @@ const encryptionController = (() => {
     (() => {
       if (password === decryptedPassword) {
         let storageObject = JSON.parse(localStorage.ticTacToe);
-        console.log(`user.name: ${user.name}`);
         storageObject.activePlayerOne = user;
         storageString = JSON.stringify(storageObject);
         localStorage.setItem("ticTacToe", storageString);

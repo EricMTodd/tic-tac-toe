@@ -45,7 +45,6 @@ const usersController = (() => {
             storageObject.usersList.push(newUser);
             let storageString = JSON.stringify(storageObject);
             localStorage.setItem("ticTacToe", storageString);
-            console.log(newUser);
             alert(`${name} has been added to the database!`);
 
             // Login
