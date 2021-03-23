@@ -6,10 +6,9 @@ const usersController = (() => {
       if (email === storageObject.usersList[i].email) {
         let user = storageObject.usersList[i];
         return user;
-      } else {
-        alert("User does not exist.");
       };
     };
+    return;
   };
 
   const createUser = (name, email, password, confirmPassword) => {

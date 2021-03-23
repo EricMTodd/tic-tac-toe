@@ -5,7 +5,11 @@ const loginController = (() => {
       return alert("Please fill out all form fields.");
     } else {
       let user = usersController.findUser(email, password);
-      encryptionController.decrypt(password, user);
+      if (user === undefined) {
+        return alert("User does not exist.");
+      } else {
+        encryptionController.decrypt(password, user);
+      };
     };
     return;
   };
