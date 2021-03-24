@@ -1,5 +1,5 @@
 const encryptionController = (() => {
-  const alphanumerics = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  const alphanumerics = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[{]}\|,<.>/?`~";
 
   const encrypt = (password, salt) => {
     // Crucial variables

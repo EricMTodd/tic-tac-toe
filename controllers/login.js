@@ -1,6 +1,8 @@
 const loginController = (() => {
   
   const login = (email, password) => {
+    email = email.trim();
+    password = password.trim();
     if (email === "" || password === "") {
       return alert("Please fill out all form fields.");
     } else {
