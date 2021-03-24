@@ -15,11 +15,15 @@ const loginController = (() => {
   };
 
   const logout = () => {
-    // Logout
+    let storageObject = JSON.parse(localStorage.ticTacToe);
+    storageObject.activePlayerOne = null;
+    let storageString = JSON.stringify(storageObject);
+    localStorage.setItem("ticTacToe", storageString);
+    return location.reload();
   };
 
   return {
     login,
-    // logout,
+    logout,
   };
 })();

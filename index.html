@@ -10,20 +10,19 @@
 </head>
 
 <body>
-  <header>
-    <h1>index.html</h1>
+  <header id="index-header">
   </header>
   <main>
+    <button onclick="localStorage.clear(), location.reload()">Clear LocalStorage</button>
     <div id="leaderboard-container">
       <h1>Leaderboard</h1>
-      <a href="views/userForms.html">Login</a>
-      <br><br>
-      <button onclick="localStorage.clear(), location.reload()">Clear LocalStorage</button>
       <ul id="leaderboard-users-list"></ul>
     </div>
   </main>
   <script src="models/storage.js"></script>
+  <script src="controllers/login.js"></script>
   <script src="controllers/storage.js"></script>
+  <script src="controllers/header.js"></script>
   <script src="controllers/leaderboard.js"></script>
 </body>
 
