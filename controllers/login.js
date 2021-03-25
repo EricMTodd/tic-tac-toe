@@ -6,9 +6,6 @@ const loginController = (() => {
     password = password.trim();
     let user = usersController.findUser(email, password);
 
-    if (user.email === storageObject.activePlayerOne.email || user.email === storageObject.activePlayerTwo.email) {
-      return alert("You cannot log the same player in twice.");
-    }    
     if (email === "" || password === "") {
       return alert("Please fill out all form fields.");
     } else {
