@@ -3,6 +3,9 @@ const userFormsController = (() => {
 
   const renderCreateUserForm = () => {
     userFormContainer.innerHTML = `
+    <div id="create-user-form-header">
+    <h3>Create New User</h3>
+    </div>
     <div id="create-new-user-form">
       <form">
         <fieldset>

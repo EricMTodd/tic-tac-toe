@@ -1,7 +1,7 @@
 const usersController = (() => {
   const storageObject = JSON.parse(localStorage.ticTacToe);
 
-  const findUser = (email, password) => {
+  const findUser = (email) => {
     for (let i = 0; i < storageObject.usersList.length; i++) {
       if (email === storageObject.usersList[i].email) {
         let user = storageObject.usersList[i];
@@ -47,10 +47,17 @@ const usersController = (() => {
             alert(`${name} has been added to the database!`);
 
             // Login
-            storageObject.activePlayerOne = newUser;
-            storageString = JSON.stringify(storageObject);
-            localStorage.setItem("ticTacToe", storageString);
-            window.location.replace('../index.html');
+            if (storageObject.activePlayerOne === null) {
+              storageObject.activePlayerOne = newUser;
+              storageString = JSON.stringify(storageObject);
+              localStorage.setItem("ticTacToe", storageString);
+              window.location.replace('../index.html');
+            } else {
+              storageObject.activePlayerTwo = newUser;
+              storageString = JSON.stringify(storageObject);
+              localStorage.setItem("ticTacToe", storageString);
+              window.location.replace('../index.html');
+            };
           } else {
             alert("Passwords do not match.");
           };

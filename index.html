@@ -11,7 +11,9 @@
 
 <body>
   <header id="index-header">
+    <h1>Tic-Tac-Toe</h1>
   </header>
+  <div id="player-card-container"></div>
   <main>
     <button onclick="localStorage.clear(), location.reload()">Clear LocalStorage</button>
     <div id="leaderboard-container">
@@ -20,9 +22,10 @@
     </div>
   </main>
   <script src="models/storage.js"></script>
-  <script src="controllers/login.js"></script>
   <script src="controllers/storage.js"></script>
-  <script src="controllers/header.js"></script>
+  <script src="controllers/login.js"></script>
+  <script src="controllers/game.js"></script>
+  <script src="controllers/playerCards.js"></script>
   <script src="controllers/leaderboard.js"></script>
 </body>
 

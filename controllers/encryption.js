@@ -187,18 +187,30 @@ const encryptionController = (() => {
     (() => {
       if (password === decryptedPassword) {
         let storageObject = JSON.parse(localStorage.ticTacToe);
-        storageObject.activePlayerOne = user;
-        storageString = JSON.stringify(storageObject);
-        localStorage.setItem("ticTacToe", storageString);
-        window.location.replace('../index.html');
-        return;
+        if (storageObject.activePlayerOne === null) {
+          storageObject.activePlayerOne = user;
+          storageString = JSON.stringify(storageObject);
+          localStorage.setItem("ticTacToe", storageString);
+          window.location.replace('../index.html');
+          return;
+        } else if (storageObject.activePlayerTwo === null) {
+          storageObject.activePlayerTwo = user;
+          storageString = JSON.stringify(storageObject);
+          localStorage.setItem("ticTacToe", storageString);
+          window.location.replace('../index.html');
+          return;
+        } else if (storageObject.activePlayerOne === user || storageObject.activePlayerTwo === user) {
+          return alert("You cannot be logged in as both players.");
+        } else {
+          return alert("No available player slots. Please log a player out and try again.");
+        };
       } else {
         alert("Incorrect password.")
-      }
+      };
       return decryptedPassword = "";
     })();
     // End of decrypt function
-  }
+  };
 
   return {
     alphanumerics,
