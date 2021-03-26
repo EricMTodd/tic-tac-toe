@@ -13,8 +13,12 @@
   <header id="index-header">
     <h1>Tic-Tac-Toe</h1>
   </header>
-  <div id="player-card-container"></div>
   <main>
+  <div id="player-card-container"></div>
+  <div id="game-mode-selection-container">
+    <button id="start-game-button" type="button" disabled="true" onclick="console.log('click')">Start Game</button>
+    <br><br>
+  </div>
     <button onclick="localStorage.clear(), location.reload()">Clear LocalStorage</button>
     <div id="leaderboard-container">
       <h1>Leaderboard</h1>
