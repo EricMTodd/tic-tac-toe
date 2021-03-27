@@ -187,26 +187,6 @@ const encryptionController = (() => {
     (() => {
       if (password === decryptedPassword) {
         let storageObject = JSON.parse(localStorage.ticTacToe);
-
-        // if (user.email === storageObject.activePlayerOne.email || user.email === storageObject.activePlayerTwo.email) {
-        //   document.querySelector("#login-email-input").value = "";
-        //   document.querySelector("#login-password-input").value = "";
-        //   return alert("You cannot log the same player in twice.");
-        // } else if (storageObject.activePlayerOne === null) {
-        //   storageObject.activePlayerOne = user;
-        //   storageString = JSON.stringify(storageObject);
-        //   localStorage.setItem("ticTacToe", storageString);
-        //   return window.location.replace('../index.html');
-        // } else if (storageObject.activePlayerTwo === null) {
-        //   storageObject.activePlayerTwo = user;
-        //   storageString = JSON.stringify(storageObject);
-        //   localStorage.setItem("ticTacToe", storageString);
-        //   return window.location.replace('../index.html');
-        // } else {
-        //   return alert("No available player slots. Please log a player out and try again.");
-        // };
-
-
         
         if (storageObject.activePlayerOne === null && storageObject.activePlayerTwo === null) {
           storageObject.activePlayerOne = user;
