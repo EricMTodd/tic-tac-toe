@@ -73,7 +73,6 @@ input {
 
 .row {
   display: flex;
-  /* border: 3px solid black; */
   height: 100px;
   width: 300px;
   margin: 0 auto;
