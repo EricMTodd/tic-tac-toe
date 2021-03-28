@@ -36,8 +36,8 @@ const usersController = (() => {
             newUser.name = name;
             newUser.email = email;
             newUser.password = encryptionController.generateEncryption(password);
-            newUser.wins = user.wins;
-            newUser.created = user.created;
+            newUser.wins = userObjectModel.wins;
+            newUser.created = userObjectModel.created;
 
             // Add new user to the database
             storageObject.uniqueId++;

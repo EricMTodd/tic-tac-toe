@@ -1,4 +1,6 @@
 const gameObjectModel = {
-  currentTurn: null;
-  initiative: null;
+  currentTurn: 0,
+  initiative: null,
+  oddTurns: null,
+  evenTurns: null,
 };

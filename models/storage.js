@@ -3,4 +3,5 @@ const storageObjectModel = {
   usersList: [],
   activePlayerOne: null,
   activePlayerTwo: null,
+  activeGame: null,
 };
