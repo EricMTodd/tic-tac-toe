@@ -27,6 +27,7 @@ input {
 #cell-2 {
   height: 100px;
   width: 100px;
+  border-bottom: 3px solid black;
 }
 
 #cell-3 {
@@ -39,17 +40,18 @@ input {
 #cell-4 {
   height: 100px;
   width: 100px;
+  border-right: 3px solid black;
 }
 
 #cell-5 {
-  height: 97px;
-  width: 97px;
-  border: 3px solid black;
+  height: 100px;
+  width: 100px;
 }
 
 #cell-6 {
   height: 100px;
   width: 100px;
+  border-left: 3px solid black;
 }
 
 #cell-7 {
@@ -62,6 +64,7 @@ input {
 #cell-8 {
   height: 100px;
   width: 100px;
+  border-top: 3px solid black;
 }
 
 #cell-9 {
