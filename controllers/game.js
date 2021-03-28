@@ -8,7 +8,6 @@ const gameController = (() => {
 
     // Render grid cells
     for (let i = 0; i < 9; i++) {
-
       if (i % 3 === 0) {
         rowNumber++;
         let row = document.createElement("div");
@@ -21,7 +20,6 @@ const gameController = (() => {
         cell.id = `cell-${i + 1}`;
         let currentRow = document.querySelector(`#row-${rowNumber}`);
         currentRow.appendChild(cell);
-
       } else {
         let cell = document.createElement("div");
         cell.className = "cell";
@@ -35,7 +33,14 @@ const gameController = (() => {
     // End of renderGameBoard function
   })();
 
+  const setInitiative = () => {
+    console.log("Setting initiative...");
+    const initiative = Math.random() < 0.5;
+    return console.log(initiative);
+  };
+
   return {
-    renderGameBoard,
+    // renderGameBoard,
+    setInitiative,
   }
 })();
