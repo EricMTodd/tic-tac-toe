@@ -20,7 +20,7 @@ const usersController = (() => {
       };
         
         // Create new user object
-        let newUser = Object.create(user);
+        let newUser = Object.create(userObjectModel);
         // Clean up data
         name = name.trim();
         password = password.trim();

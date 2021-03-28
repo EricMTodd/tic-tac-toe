@@ -1,6 +1,4 @@
-const game = {
-  playerOne = null,
-  playerTwo = null,
-  currentTurn = true,
-  initiative = true,
+const gameObjectModel = {
+  currentTurn: null;
+  initiative: null;
 };

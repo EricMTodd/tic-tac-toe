@@ -1,6 +1,16 @@
 const gameController = (() => {
   let storageObject = JSON.parse(localStorage.ticTacToe);
 
+  const setInitiative = () => {
+    console.log("Setting initiative...");
+    const initiative = Math.random() < 0.5;
+    return console.log(initiative);
+  };
+
+  const markCell = () => {
+    // Logic for marking a cell based on current turn
+  };
+
   const renderGameBoard = (() => {
     // Redirect
     let gameBoard = document.querySelector("#game-board-container");
@@ -18,12 +28,14 @@ const gameController = (() => {
         let cell = document.createElement("div");
         cell.className = "cell";
         cell.id = `cell-${i + 1}`;
+        cell.addEventListener("click", (e) => {e.target.innerText = `X`});
         let currentRow = document.querySelector(`#row-${rowNumber}`);
         currentRow.appendChild(cell);
       } else {
         let cell = document.createElement("div");
         cell.className = "cell";
         cell.id = `cell-${i + 1}`;
+        cell.addEventListener("click", (e) => {e.target.innerText = `X`});
         let currentRow = document.querySelector(`#row-${rowNumber}`);
         currentRow.appendChild(cell);
         // End if statement
@@ -33,11 +45,7 @@ const gameController = (() => {
     // End of renderGameBoard function
   })();
 
-  const setInitiative = () => {
-    console.log("Setting initiative...");
-    const initiative = Math.random() < 0.5;
-    return console.log(initiative);
-  };
+
 
   return {
     // renderGameBoard,

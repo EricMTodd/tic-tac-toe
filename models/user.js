@@ -1,4 +1,4 @@
-const user = {
+const userObjectModel = {
   id: null,
   email: null,
   name: null,
