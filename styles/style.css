@@ -16,3 +16,65 @@ li {
 input {
   margin-bottom: 5px;
 }
+
+#cell-1 {
+  height: 100px;
+  width: 100px;
+  border-bottom: 3px solid black;
+  border-right: 3px solid black;
+}
+
+#cell-2 {
+  height: 100px;
+  width: 100px;
+}
+
+#cell-3 {
+  height: 100px;
+  width: 100px;
+  border-bottom: 3px solid black;
+  border-left: 3px solid black;
+}
+
+#cell-4 {
+  height: 100px;
+  width: 100px;
+}
+
+#cell-5 {
+  height: 97px;
+  width: 100px;
+  border: 3px solid black;
+}
+
+#cell-6 {
+  height: 100px;
+  width: 100px;
+}
+
+#cell-7 {
+  height: 100px;
+  width: 100px;
+  border-top: 3px solid black;
+  border-right: 3px solid black;
+}
+
+#cell-8 {
+  height: 100px;
+  width: 100px;
+}
+
+#cell-9 {
+  height: 100px;
+  width: 100px;
+  border-top: 3px solid black;
+  border-left: 3px solid black;
+}
+
+.row {
+  display: flex;
+  /* border: 3px solid black; */
+  height: 100px;
+  width: 300px;
+  margin: 0 auto;
+}
