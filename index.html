@@ -14,7 +14,7 @@
     <h1>Tic-Tac-Toe</h1>
   </header>
   <main>
-  <div id="player-card-container"></div>
+  <div id="index-player-card-container"></div>
   <div id="game-mode-selection-container">
     <button id="start-game-button" type="button" disabled="true" onclick="window.location.replace('views/gameBoard.html');
     ">Start Game</button>
@@ -29,8 +29,9 @@
   <script src="models/storage.js"></script>
   <script src="controllers/storage.js"></script>
   <script src="controllers/login.js"></script>
-  <script src="controllers/playerCards.js"></script>
+  <script src="controllers/header.js"></script>
   <script src="controllers/leaderboard.js"></script>
+  <script>headerController.renderIndexPlayerCardContainer()</script>
 </body>
 
 </html>

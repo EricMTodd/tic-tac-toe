@@ -9,12 +9,12 @@
 </head>
 <body>
   <header>
-    <h1>gameBoard.html</h1>
+    <h1 id="gameboard-turn-indicator"></h1>
     <a href="../index.html">Return to Leaderboard</a>
     <br><br>
   </header>
   <main>
-    <div id="player-cards-container"></div>
+    <div id="gameboard-player-card-container"></div>
     <div id="game-board-container"></div>
     <br>
     <button id="end-turn-button" type="button" onclick="gameController.endTurn()">End Turn</button>
@@ -22,5 +22,7 @@
   
   <script src="../models/game.js"></script>
   <script src="../controllers/game.js"></script>
+  <script src="../controllers/header.js"></script>
+  <script>headerController.renderGameboardPlayerCardContainer()</script>
 </body>
 </html>

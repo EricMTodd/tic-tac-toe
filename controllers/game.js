@@ -4,7 +4,6 @@ const gameController = (() => {
   let markedCell = "";
 
   const setInitiative = () => {
-    console.log("Setting initiative...");
     const initiative = Math.random() < 0.5;
     return initiative;
   };
@@ -36,28 +35,31 @@ const gameController = (() => {
 
   const endTurn = () => {
     occupiedCells.push(markedCell);
-    console.log(occupiedCells);
     markedCell = "";
     storageObject.activeGame.currentTurn++;
-    console.log(storageObject.activeGame.currentTurn);
+    if (storageObject.activeGame.currentTurn % 2 !== 0) {
+      document.querySelector("#gameboard-turn-indicator").innerText = `It's ${storageObject.activeGame.oddTurns.name} turn.`;
+    } else {
+      document.querySelector("#gameboard-turn-indicator").innerText = `It's ${storageObject.activeGame.evenTurns.name} turn.`;
+    }
+
     let storageString = JSON.stringify(storageObject);
     localStorage.setItem("ticTacToe", storageString);
   };
 
   const instantiateNewGame = (() => {
-    console.log("Instantiating new game...");
     const newGame = Object.create(gameObjectModel);
     newGame.currentTurn = gameObjectModel.currentTurn;
     newGame.initiative = setInitiative();
 
     if (newGame.initiative === true) {
-      console.log(`${storageObject.activePlayerOne.name} goes first`);
       newGame.oddTurns = storageObject.activePlayerOne;
+      document.querySelector("#gameboard-turn-indicator").innerText = `${newGame.oddTurns.name} goes first!`;
       newGame.evenTurns = storageObject.activePlayerTwo;
 
     } else {
-      console.log(`${storageObject.activePlayerTwo.name} goes first`);
       newGame.oddTurns = storageObject.activePlayerTwo;
+      document.querySelector("#gameboard-turn-indicator").innerText = `${newGame.oddTurns.name} goes first!`;
       newGame.evenTurns = storageObject.activePlayerOne;
       // End of if else
     };
@@ -67,11 +69,9 @@ const gameController = (() => {
     let storageString = JSON.stringify(storageObject);
     localStorage.setItem("ticTacToe", storageString);
 
-    return console.log(newGame);
+    return;
     // End of instantiateGameFunction
   })();
-
-
 
   const renderGameBoard = (() => {
     // Redirect
@@ -108,8 +108,6 @@ const gameController = (() => {
     };
     // End of renderGameBoard function
   })();
-
-
 
   return {
     endTurn,
