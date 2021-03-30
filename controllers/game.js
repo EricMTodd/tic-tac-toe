@@ -2,6 +2,7 @@ const gameController = (() => {
   let storageObject = JSON.parse(localStorage.ticTacToe);
   let occupiedCells = [];
   let markedCell = "";
+  let gameOver = false;
 
   const setInitiative = () => {
     const initiative = Math.random() < 0.5;
@@ -10,6 +11,9 @@ const gameController = (() => {
 
   const markCell = (e) => {
     // Logic for marking a cell based on current turn    
+    if (gameOver === true) {
+      return;
+    };
 
     if (occupiedCells.length > 0) {
       for (let i = 0; i < occupiedCells.length; i++) {
@@ -33,69 +37,21 @@ const gameController = (() => {
     // End of markCell function
   };
 
-  const evaluateMarks = () => {
-    console.log("Evaluating marks...");
-    // Evaluate rows
-    if (document.querySelector("#cell-1").innerText !== "" && document.querySelector("#cell-1").innerText === document.querySelector("#cell-2").innerText && document.querySelector("#cell-2").innerText === document.querySelector("#cell-3").innerText) {
-      if (document.querySelector("#cell-1").innerText === "X") {
-        console.log(`${storageObject.activeGame.oddTurns.name} is the winner!`);
-      } else {
-        console.log(`${storageObject.activeGame.evenTurns.name} is the winner!`);
-      };
-    } else if (document.querySelector("#cell-4").innerText !== "" && document.querySelector("#cell-4").innerText === document.querySelector("#cell-5").innerText && document.querySelector("#cell-5").innerText === document.querySelector("#cell-6").innerText) {
-      if (document.querySelector("#cell-4").innerText === "X") {
-        console.log(`${storageObject.activeGame.oddTurns.name} is the winner!`);
-      } else {
-        console.log(`${storageObject.activeGame.evenTurns.name} is the winner!`);
-      };
-    } else if (document.querySelector("#cell-7").innerText !== "" && document.querySelector("#cell-7").innerText === document.querySelector("#cell-8").innerText && document.querySelector("#cell-8").innerText === document.querySelector("#cell-9").innerText) {
-      if (document.querySelector("#cell-7").innerText === "X") {
-        console.log(`${storageObject.activeGame.oddTurns.name} is the winner!`);
-      } else {
-        console.log(`${storageObject.activeGame.evenTurns.name} is the winner!`);
-      };
-      console.log("Winner, winner, chicken dinner!");
-    // Evaluate columns
-    } else if (document.querySelector("#cell-1").innerText!== "" && document.querySelector("#cell-1").innerText === document.querySelector("#cell-4").innerText && document.querySelector("#cell-4").innerText === document.querySelector("#cell-7").innerText) {
-      if (document.querySelector("#cell-1").innerText === "X") {
-        console.log(`${storageObject.activeGame.oddTurns.name} is the winner!`);
-      } else {
-        console.log(`${storageObject.activeGame.evenTurns.name} is the winner!`);
-      };
-    } else if (document.querySelector("#cell-2").innerText!== "" && document.querySelector("#cell-2").innerText === document.querySelector("#cell-5").innerText && document.querySelector("#cell-5").innerText === document.querySelector("#cell-8").innerText) {
-      if (document.querySelector("#cell-2").innerText === "X") {
-        console.log(`${storageObject.activeGame.oddTurns.name} is the winner!`);
-      } else {
-        console.log(`${storageObject.activeGame.evenTurns.name} is the winner!`);
-      };
-    } else if (document.querySelector("#cell-3").innerText!== "" && document.querySelector("#cell-3").innerText === document.querySelector("#cell-6").innerText && document.querySelector("#cell-6").innerText === document.querySelector("#cell-9").innerText) {
-      if (document.querySelector("#cell-3").innerText === "X") {
-        console.log(`${storageObject.activeGame.oddTurns.name} is the winner!`);
-      } else {
-        console.log(`${storageObject.activeGame.evenTurns.name} is the winner!`);
-      };
-    // Evaluate left to right top to bottom diagonal
-    } else if (document.querySelector("#cell-1").innerText!== "" && document.querySelector("#cell-1").innerText === document.querySelector("#cell-5").innerText && document.querySelector("#cell-5").innerText === document.querySelector("#cell-9").innerText) {
-      if (document.querySelector("#cell-1").innerText === "X") {
-        console.log(`${storageObject.activeGame.oddTurns.name} is the winner!`);
-      } else {
-        console.log(`${storageObject.activeGame.evenTurns.name} is the winner!`);
-      };
-    // Evaluate left to right bottom to top diaganol
-    } else if (document.querySelector("#cell-7").innerText!== "" && document.querySelector("#cell-7").innerText === document.querySelector("#cell-5").innerText && document.querySelector("#cell-5").innerText === document.querySelector("#cell-3").innerText) {
-      if (document.querySelector("#cell-7").innerText === "X") {
-        console.log(`${storageObject.activeGame.oddTurns.name} is the winner!`);
-      } else {
-        console.log(`${storageObject.activeGame.evenTurns.name} is the winner!`);
-      };
+  const assignWin = (cell) => {
+    let endTurnButton = document.querySelector("#end-turn-button");
+    gameOver = true;
+
+    if (cell.innerText === "X") {
+      endTurnButton.disabled = true;
+      document.querySelector("#gameboard-turn-indicator").innerText = `${storageObject.activeGame.oddTurns.name} is the winner!`;
     } else {
-      return;
+      endTurnButton.disabled = true;
+      document.querySelector("#gameboard-turn-indicator").innerText = `${storageObject.activeGame.evenTurns.name} is the winner!`;
     };
-    // End of evaluateMarks function
+    return;
   };
 
   const endTurn = () => {
-    evaluateMarks();
     occupiedCells.push(markedCell);
     markedCell = "";
     storageObject.activeGame.currentTurn++;
@@ -107,6 +63,35 @@ const gameController = (() => {
 
     let storageString = JSON.stringify(storageObject);
     localStorage.setItem("ticTacToe", storageString);
+  };
+
+  const evaluateMarks = () => {
+    console.log("Evaluating marks...");
+    // Evaluate rows
+    if (document.querySelector("#cell-1").innerText !== "" && document.querySelector("#cell-1").innerText === document.querySelector("#cell-2").innerText && document.querySelector("#cell-2").innerText === document.querySelector("#cell-3").innerText) {
+      assignWin(document.querySelector("#cell-1"));
+    } else if (document.querySelector("#cell-4").innerText !== "" && document.querySelector("#cell-4").innerText === document.querySelector("#cell-5").innerText && document.querySelector("#cell-5").innerText === document.querySelector("#cell-6").innerText) {
+      assignWin(document.querySelector("#cell-4"));
+    } else if (document.querySelector("#cell-7").innerText !== "" && document.querySelector("#cell-7").innerText === document.querySelector("#cell-8").innerText && document.querySelector("#cell-8").innerText === document.querySelector("#cell-9").innerText) {
+      assignWin(document.querySelector("#cell-7"));
+      console.log("Winner, winner, chicken dinner!");
+    // Evaluate columns
+    } else if (document.querySelector("#cell-1").innerText!== "" && document.querySelector("#cell-1").innerText === document.querySelector("#cell-4").innerText && document.querySelector("#cell-4").innerText === document.querySelector("#cell-7").innerText) {
+      assignWin(document.querySelector("#cell-1"));
+    } else if (document.querySelector("#cell-2").innerText!== "" && document.querySelector("#cell-2").innerText === document.querySelector("#cell-5").innerText && document.querySelector("#cell-5").innerText === document.querySelector("#cell-8").innerText) {
+      assignWin(document.querySelector("#cell-2"))
+    } else if (document.querySelector("#cell-3").innerText!== "" && document.querySelector("#cell-3").innerText === document.querySelector("#cell-6").innerText && document.querySelector("#cell-6").innerText === document.querySelector("#cell-9").innerText) {
+      assignWin(document.querySelector("#cell-3"));
+    // Evaluate left to right top to bottom diagonal
+    } else if (document.querySelector("#cell-1").innerText!== "" && document.querySelector("#cell-1").innerText === document.querySelector("#cell-5").innerText && document.querySelector("#cell-5").innerText === document.querySelector("#cell-9").innerText) {
+      assignWin(document.querySelector("#cell-1"));
+    // Evaluate left to right bottom to top diaganol
+    } else if (document.querySelector("#cell-7").innerText!== "" && document.querySelector("#cell-7").innerText === document.querySelector("#cell-5").innerText && document.querySelector("#cell-5").innerText === document.querySelector("#cell-3").innerText) {
+      assignWin(document.querySelector("#cell-7"));
+    } else {
+      return endTurn();
+    };
+    // End of evaluateMarks function
   };
 
   const instantiateNewGame = (() => {
@@ -152,7 +137,7 @@ const gameController = (() => {
       let cell = document.createElement("div");
       cell.className = "cell";
       cell.id = `cell-${i + 1}`;
-      cell.addEventListener("click", (e) => {markCell(e)});
+      cell.addEventListener("click", (e) => {markCell(e)}, true);
       let currentRow = document.querySelector(`#row-${rowNumber}`);
       currentRow.appendChild(cell);
     };
@@ -173,6 +158,7 @@ const gameController = (() => {
 
   return {
     endTurn,
+    evaluateMarks,
     markCell,
     // renderGameBoard,
     // setInitiative,
