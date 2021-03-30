@@ -33,14 +33,76 @@ const gameController = (() => {
     // End of markCell function
   };
 
+  const evaluateMarks = () => {
+    console.log("Evaluating marks...");
+    // Evaluate rows
+    if (document.querySelector("#cell-1").innerText !== "" && document.querySelector("#cell-1").innerText === document.querySelector("#cell-2").innerText && document.querySelector("#cell-2").innerText === document.querySelector("#cell-3").innerText) {
+      if (document.querySelector("#cell-1").innerText === "X") {
+        console.log(`${storageObject.activeGame.oddTurns.name} is the winner!`);
+      } else {
+        console.log(`${storageObject.activeGame.evenTurns.name} is the winner!`);
+      };
+    } else if (document.querySelector("#cell-4").innerText !== "" && document.querySelector("#cell-4").innerText === document.querySelector("#cell-5").innerText && document.querySelector("#cell-5").innerText === document.querySelector("#cell-6").innerText) {
+      if (document.querySelector("#cell-4").innerText === "X") {
+        console.log(`${storageObject.activeGame.oddTurns.name} is the winner!`);
+      } else {
+        console.log(`${storageObject.activeGame.evenTurns.name} is the winner!`);
+      };
+    } else if (document.querySelector("#cell-7").innerText !== "" && document.querySelector("#cell-7").innerText === document.querySelector("#cell-8").innerText && document.querySelector("#cell-8").innerText === document.querySelector("#cell-9").innerText) {
+      if (document.querySelector("#cell-7").innerText === "X") {
+        console.log(`${storageObject.activeGame.oddTurns.name} is the winner!`);
+      } else {
+        console.log(`${storageObject.activeGame.evenTurns.name} is the winner!`);
+      };
+      console.log("Winner, winner, chicken dinner!");
+    // Evaluate columns
+    } else if (document.querySelector("#cell-1").innerText!== "" && document.querySelector("#cell-1").innerText === document.querySelector("#cell-4").innerText && document.querySelector("#cell-4").innerText === document.querySelector("#cell-7").innerText) {
+      if (document.querySelector("#cell-1").innerText === "X") {
+        console.log(`${storageObject.activeGame.oddTurns.name} is the winner!`);
+      } else {
+        console.log(`${storageObject.activeGame.evenTurns.name} is the winner!`);
+      };
+    } else if (document.querySelector("#cell-2").innerText!== "" && document.querySelector("#cell-2").innerText === document.querySelector("#cell-5").innerText && document.querySelector("#cell-5").innerText === document.querySelector("#cell-8").innerText) {
+      if (document.querySelector("#cell-2").innerText === "X") {
+        console.log(`${storageObject.activeGame.oddTurns.name} is the winner!`);
+      } else {
+        console.log(`${storageObject.activeGame.evenTurns.name} is the winner!`);
+      };
+    } else if (document.querySelector("#cell-3").innerText!== "" && document.querySelector("#cell-3").innerText === document.querySelector("#cell-6").innerText && document.querySelector("#cell-6").innerText === document.querySelector("#cell-9").innerText) {
+      if (document.querySelector("#cell-3").innerText === "X") {
+        console.log(`${storageObject.activeGame.oddTurns.name} is the winner!`);
+      } else {
+        console.log(`${storageObject.activeGame.evenTurns.name} is the winner!`);
+      };
+    // Evaluate left to right top to bottom diagonal
+    } else if (document.querySelector("#cell-1").innerText!== "" && document.querySelector("#cell-1").innerText === document.querySelector("#cell-5").innerText && document.querySelector("#cell-5").innerText === document.querySelector("#cell-9").innerText) {
+      if (document.querySelector("#cell-1").innerText === "X") {
+        console.log(`${storageObject.activeGame.oddTurns.name} is the winner!`);
+      } else {
+        console.log(`${storageObject.activeGame.evenTurns.name} is the winner!`);
+      };
+    // Evaluate left to right bottom to top diaganol
+    } else if (document.querySelector("#cell-7").innerText!== "" && document.querySelector("#cell-7").innerText === document.querySelector("#cell-5").innerText && document.querySelector("#cell-5").innerText === document.querySelector("#cell-3").innerText) {
+      if (document.querySelector("#cell-7").innerText === "X") {
+        console.log(`${storageObject.activeGame.oddTurns.name} is the winner!`);
+      } else {
+        console.log(`${storageObject.activeGame.evenTurns.name} is the winner!`);
+      };
+    } else {
+      return;
+    };
+    // End of evaluateMarks function
+  };
+
   const endTurn = () => {
+    evaluateMarks();
     occupiedCells.push(markedCell);
     markedCell = "";
     storageObject.activeGame.currentTurn++;
     if (storageObject.activeGame.currentTurn % 2 !== 0) {
-      document.querySelector("#gameboard-turn-indicator").innerText = `It's ${storageObject.activeGame.oddTurns.name} turn.`;
+      document.querySelector("#gameboard-turn-indicator").innerText = `It's ${storageObject.activeGame.oddTurns.name}'s turn.`;
     } else {
-      document.querySelector("#gameboard-turn-indicator").innerText = `It's ${storageObject.activeGame.evenTurns.name} turn.`;
+      document.querySelector("#gameboard-turn-indicator").innerText = `It's ${storageObject.activeGame.evenTurns.name}'s turn.`;
     }
 
     let storageString = JSON.stringify(storageObject);

@@ -41,7 +41,7 @@ const headerController = (() => {
     } else {
       console.log("wtf");
     }
-    // End of rednerplayerCardContainer function
+    // End of rednerIndexCardContainer function
   };
 
   const renderGameboardPlayerCardContainer = () => {
@@ -79,7 +79,7 @@ const headerController = (() => {
     } else {
       console.log("wtf");
     }
-    // End of rednerplayerCardContainer function
+    // End of renderGameboardCardContainer function
   };
 
   return {
