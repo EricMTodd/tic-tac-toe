@@ -49,7 +49,6 @@ const gameController = (() => {
           storageObject.usersList[i].wins++;
         };
       };
-      storageObject.activeGame.oddTurns.wins++;
       if (storageObject.activeGame.oddTurns.email === storageObject.activePlayerOne.email) {
         storageObject.activePlayerOne.wins++;
       } else {
@@ -63,7 +62,6 @@ const gameController = (() => {
           storageObject.usersList[i].wins++
         };
       };
-      storageObject.activeGame.evenTurns.wins++;
       if (storageObject.activeGame.evenTurns.email === storageObject.activePlayerOne.email) {
         storageObject.activePlayerOne.wins++;
       } else {
@@ -90,7 +88,6 @@ const gameController = (() => {
   };
 
   const evaluateMarks = () => {
-    console.log("Evaluating marks...");
     // Evaluate rows
     if (document.querySelector("#cell-1").innerText !== "" && document.querySelector("#cell-1").innerText === document.querySelector("#cell-2").innerText && document.querySelector("#cell-2").innerText === document.querySelector("#cell-3").innerText) {
       assignWin(document.querySelector("#cell-1"));
@@ -98,7 +95,6 @@ const gameController = (() => {
       assignWin(document.querySelector("#cell-4"));
     } else if (document.querySelector("#cell-7").innerText !== "" && document.querySelector("#cell-7").innerText === document.querySelector("#cell-8").innerText && document.querySelector("#cell-8").innerText === document.querySelector("#cell-9").innerText) {
       assignWin(document.querySelector("#cell-7"));
-      console.log("Winner, winner, chicken dinner!");
     // Evaluate columns
     } else if (document.querySelector("#cell-1").innerText!== "" && document.querySelector("#cell-1").innerText === document.querySelector("#cell-4").innerText && document.querySelector("#cell-4").innerText === document.querySelector("#cell-7").innerText) {
       assignWin(document.querySelector("#cell-1"));
