@@ -44,10 +44,34 @@ const gameController = (() => {
     if (cell.innerText === "X") {
       endTurnButton.disabled = true;
       document.querySelector("#gameboard-turn-indicator").innerText = `${storageObject.activeGame.oddTurns.name} is the winner!`;
+      for (let i = 0; i < storageObject.usersList.length; i++) {
+        if (storageObject.activeGame.oddTurns.email === storageObject.usersList[i].email) {
+          storageObject.usersList[i].wins++;
+        };
+      };
+      storageObject.activeGame.oddTurns.wins++;
+      if (storageObject.activeGame.oddTurns.email === storageObject.activePlayerOne.email) {
+        storageObject.activePlayerOne.wins++;
+      } else {
+        storageObject.activePlayerTwo.wins++;
+      };
     } else {
       endTurnButton.disabled = true;
       document.querySelector("#gameboard-turn-indicator").innerText = `${storageObject.activeGame.evenTurns.name} is the winner!`;
+      for (let i = 0; i < storageObject.usersList.length; i++) {
+        if (storageObject.activeGame.evenTurns.email === storageObject.usersList[i].email) {
+          storageObject.usersList[i].wins++
+        };
+      };
+      storageObject.activeGame.evenTurns.wins++;
+      if (storageObject.activeGame.evenTurns.email === storageObject.activePlayerOne.email) {
+        storageObject.activePlayerOne.wins++;
+      } else {
+        storageObject.activePlayerTwo.wins++;
+      };
     };
+    let storageString = JSON.stringify(storageObject);
+    localStorage.setItem("ticTacToe", storageString);
     return;
   };
 
@@ -59,7 +83,7 @@ const gameController = (() => {
       document.querySelector("#gameboard-turn-indicator").innerText = `It's ${storageObject.activeGame.oddTurns.name}'s turn.`;
     } else {
       document.querySelector("#gameboard-turn-indicator").innerText = `It's ${storageObject.activeGame.evenTurns.name}'s turn.`;
-    }
+    };
 
     let storageString = JSON.stringify(storageObject);
     localStorage.setItem("ticTacToe", storageString);
@@ -120,6 +144,12 @@ const gameController = (() => {
     // End of instantiateGameFunction
   })();
 
+  const resetActiveGame = () => {
+    storageObject.activeGame = null;
+    let storageString = JSON.stringify(storageObject);
+    localStorage.setItem("ticTacToe", storageString);
+  };
+
   const renderGameBoard = (() => {
     // Redirect
     let gameBoard = document.querySelector("#game-board-container");
@@ -160,6 +190,7 @@ const gameController = (() => {
     endTurn,
     evaluateMarks,
     markCell,
+    resetActiveGame,
     // renderGameBoard,
     // setInitiative,
   };

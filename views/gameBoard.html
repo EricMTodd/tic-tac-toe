@@ -10,7 +10,7 @@
 <body>
   <header>
     <h1 id="gameboard-turn-indicator"></h1>
-    <a href="../index.html">Return to Leaderboard</a>
+    <a href="../index.html" onclick="gameController.resetActiveGame()">Return to Leaderboard</a>
     <br><br>
   </header>
   <main>
@@ -21,8 +21,8 @@
   </main>
   
   <script src="../models/game.js"></script>
+  <script src="../controllers/users.js"></script>
   <script src="../controllers/game.js"></script>
   <script src="../controllers/header.js"></script>
-  <script>headerController.renderGameboardPlayerCardContainer()</script>
 </body>
 </html>
