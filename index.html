@@ -12,22 +12,24 @@
 </head>
 
 <body>
-  <header id="index-header">
-    <h1>Tic-Tac-Toe</h1>
-  </header>
-  <main>
-  <div id="index-player-card-container"></div>
-  <div id="game-mode-selection-container">
-    <button id="start-game-button" type="button" disabled="true" onclick="window.location.replace('views/gameBoard.html');
-    ">Start Game</button>
-    <br><br>
-  </div>
-    <!-- <button onclick="localStorage.clear(), location.reload()">Clear LocalStorage</button> -->
-    <div id="leaderboard-container">
-      <h1>Leaderboard</h1>
-      <ul id="leaderboard-users-list"></ul>
+  <div class="container">
+    <header id="index-header">
+      <h1>Tic-Tac-Toe</h1>
+    </header>
+    <main>
+    <div id="index-player-card-container"></div>
+    <div id="game-mode-selection-container">
+      <button id="start-game-button" type="button" disabled="true" onclick="window.location.replace('views/gameBoard.html');
+      ">Start Game</button>
+      <br><br>
     </div>
-  </main>
+      <!-- <button onclick="localStorage.clear(), location.reload()">Clear LocalStorage</button> -->
+      <div id="leaderboard-container">
+        <h1>Leaderboard</h1>
+        <ul id="leaderboard-users-list"></ul>
+      </div>
+    </main>
+  </div>
   <script src="models/storage.js"></script>
   <script src="scripts/storage.js"></script>
   <script src="scripts/login.js"></script>

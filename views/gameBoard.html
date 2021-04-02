@@ -10,17 +10,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Rock+Salt&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1 id="gameboard-turn-indicator"></h1>
-    <a href="../index.html" onclick="gameController.resetActiveGame()">Return to Leaderboard</a>
-    <br><br>
-  </header>
-  <main>
-    <div id="gameboard-player-card-container"></div>
-    <div id="game-board-container"></div>
-    <br>
-    <button id="end-turn-button" type="button" onclick="gameController.evaluateMarks()">End Turn</button>
-  </main>
+  <div class="container">
+    <header>
+      <h1 id="gameboard-turn-indicator"></h1>
+      <a href="../index.html" onclick="gameController.resetActiveGame()">Return to Leaderboard</a>
+      <br><br>
+    </header>
+    <main>
+      <div id="gameboard-player-card-container"></div>
+      <div id="game-board-container"></div>
+      <br>
+      <button id="end-turn-button" type="button" onclick="gameController.evaluateMarks()">End Turn</button>
+    </main>
+  </div>
   
   <script src="../models/game.js"></script>
   <script src="../scripts/users.js"></script>
