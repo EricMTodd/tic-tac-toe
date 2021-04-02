@@ -8,6 +8,13 @@ Project link: https://theodinproject.com/courses/javascript/lessons/tic-tac-toe-
 
 The application is a project done for The Odin Project where the requirement was to make a simple tic-tac-toe game using everything learned up to this point. I did a lot of experiementation with this project, and through that wrote what is the most impressive aspect of this application: a full one-time-pad password encryption and decryption algorithm for the accounts that are required to interact with the game.
 
+## Finishing touches
+
+- Revise and refactor
+- Style app to look like a chalkboard
+- Handle spacing of elements entirely with css
+
+
 ## UX Flow
 
 - Landing page/leaderboard (complete)
