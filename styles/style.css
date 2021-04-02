@@ -1,6 +1,22 @@
 * {
   text-align: center;
-  font-family: arial, sans-serif;
+  font-family: 'Rock Salt', cursive;
+  color: white;
+}
+
+html {
+  background: url("../images/chalkboard-texture.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+button {
+  background-color: transparent;
+  border-color: white;
+  border-radius: 15px;
+  padding: 10px;
 }
 
 ul {
@@ -22,27 +38,27 @@ input {
 #cell-1 {
   height: 100px;
   width: 100px;
-  border-bottom: 3px solid black;
-  border-right: 3px solid black;
+  border-bottom: 3px solid white;
+  border-right: 3px solid white;
 }
 
 #cell-2 {
   height: 100px;
   width: 100px;
-  border-bottom: 3px solid black;
+  border-bottom: 3px solid white;
 }
 
 #cell-3 {
   height: 100px;
   width: 100px;
-  border-bottom: 3px solid black;
-  border-left: 3px solid black;
+  border-bottom: 3px solid white;
+  border-left: 3px solid white;
 }
 
 #cell-4 {
   height: 100px;
   width: 100px;
-  border-right: 3px solid black;
+  border-right: 3px solid white;
 }
 
 #cell-5 {
@@ -53,27 +69,27 @@ input {
 #cell-6 {
   height: 100px;
   width: 100px;
-  border-left: 3px solid black;
+  border-left: 3px solid white;
 }
 
 #cell-7 {
   height: 100px;
   width: 100px;
-  border-top: 3px solid black;
-  border-right: 3px solid black;
+  border-top: 3px solid white;
+  border-right: 3px solid white;
 }
 
 #cell-8 {
   height: 100px;
   width: 100px;
-  border-top: 3px solid black;
+  border-top: 3px solid white;
 }
 
 #cell-9 {
   height: 100px;
   width: 100px;
-  border-top: 3px solid black;
-  border-left: 3px solid black;
+  border-top: 3px solid white;
+  border-left: 3px solid white;
 }
 
 .cell {

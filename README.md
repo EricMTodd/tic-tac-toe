@@ -13,7 +13,7 @@ The application is a project done for The Odin Project where the requirement was
 - Revise and refactor
 - Style app to look like a chalkboard
 - Handle spacing of elements entirely with css
-
+- Create contextual text queues for players, Red for player 1 or X, and blue for player 2 or O
 
 ## UX Flow
 
