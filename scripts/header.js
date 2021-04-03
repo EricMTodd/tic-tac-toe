@@ -11,12 +11,12 @@ const headerController = (() => {
      return playerCardContainer.innerHTML = `
       <div class="active-player-card" id="active-player-one-card">
         <p>Player 1:</p>
-        <p>${storageObject.activePlayerOne.name}</p>
+        <h2>${storageObject.activePlayerOne.name}</h2>
         <button id="active-player-one-logout-button" type="button" onclick="loginController.logout(1)">Logout</button>
       </div>
       <div class="active-player-card" id="active-player-two-card">
         <p>Player 2:</p>
-        <p>${storageObject.activePlayerTwo.name}</p>
+        <h2>${storageObject.activePlayerTwo.name}</h2>
         <button id="active-player-two-logout-button" type="button" onclick="loginController.logout(2)">Logout</button>
       </div>
       `;
@@ -25,7 +25,7 @@ const headerController = (() => {
       <div class="active-player-card" id="active-player-one-card">
         <a href="views/userForms.html">Login</a>
         <p>Player 1:</p>
-        <p>${storageObject.activePlayerOne.name}</p>
+        <h2>${storageObject.activePlayerOne.name}</h2>
         <button id="active-player-one-logout-button" type="button" onclick="loginController.logout(1)">Logout</button>
       </div>
     `;
@@ -34,7 +34,7 @@ const headerController = (() => {
       <div class="active-player-card" id="active-player-two-card">
         <a href="views/userForms.html">Login</a>
         <p>Player 2:</p>
-        <p>${storageObject.activePlayerTwo.name}</p>
+        <h2>${storageObject.activePlayerTwo.name}</h2>
         <button id="active-player-Two-logout-button" type="button" onclick="loginController.logout()">Logout</button>
       </div>
     `;
