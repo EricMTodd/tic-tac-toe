@@ -2,6 +2,15 @@ const headerController = (() => {
   let storageObject = JSON.parse(localStorage.ticTacToe);
 
   const renderIndexPlayerCardContainer = () => {
+    if (storageObject.activePlayerOne.name === "Computer") {
+      storageObject.activePlayerOne = null
+      let storageString = JSON.stringify(storageObject)
+      localStorage.setItem("ticTacToe", storageString)
+    } else if (storageObject.activePlayerTwo.name === "Computer") {
+      storageObject.activePlayerTwo = null
+      let storageString = JSON.stringify(storageObject)
+      localStorage.setItem("ticTacToe", storageString)
+    }
     let playerCardContainer = document.querySelector("#index-player-card-container");
         if (storageObject.activePlayerOne === null && storageObject.activePlayerTwo === null) {
         return playerCardContainer.innerHTML = `

@@ -2,6 +2,7 @@ const gameController = (() => {
   let storageObject = JSON.parse(localStorage.ticTacToe);
   let occupiedCells = [];
   let markedCell = "";
+  let singlePlayer = false;
   let gameOver = false;
 
   const setInitiative = () => {
@@ -73,7 +74,30 @@ const gameController = (() => {
     return;
   };
 
+  const computerMark = () => {
+    let randomNumber = Math.floor(Math.random() * 9) + 1
+    if (document.querySelector(`#cell-${randomNumber}`).innerText !== "") {
+      if (storageObject.activeGame.currentTurn % 2 !== 0) {
+        markedCell = document.querySelector(`#cell-${randomNumber}`)
+        markedCell.innerText = "X"
+      } else {
+        markedCell = document.querySelector(`#cell-${randomNumber}`)
+        markedCell.innerText = "O"
+      }
+    } else {
+      computerMark();
+    }
+    occupiedCells.push(markedCell);
+    markedCell = "";
+    storageObject.activeGame.currentTurn++;
+    return;
+  }
+
   const endTurn = () => {
+    if (singlePlayer = true) {
+      computerMark()
+    }
+
     occupiedCells.push(markedCell);
     markedCell = "";
     storageObject.activeGame.currentTurn++;
@@ -114,7 +138,7 @@ const gameController = (() => {
     // End of evaluateMarks function
   };
 
-  const instantiateNewGame = (() => {
+  const instantiateMultiplayerGame = () => {
     const newGame = Object.create(gameObjectModel);
     newGame.currentTurn = gameObjectModel.currentTurn;
     newGame.initiative = setInitiative();
@@ -123,7 +147,6 @@ const gameController = (() => {
       newGame.oddTurns = storageObject.activePlayerOne;
       document.querySelector("#gameboard-turn-indicator").innerText = `${newGame.oddTurns.name} goes first!`;
       newGame.evenTurns = storageObject.activePlayerTwo;
-
     } else {
       newGame.oddTurns = storageObject.activePlayerTwo;
       document.querySelector("#gameboard-turn-indicator").innerText = `${newGame.oddTurns.name} goes first!`;
@@ -136,9 +159,24 @@ const gameController = (() => {
     let storageString = JSON.stringify(storageObject);
     localStorage.setItem("ticTacToe", storageString);
 
-    return;
-    // End of instantiateGameFunction
-  })();
+    return renderGameBoard()
+    // End of instantiateMultiplayerGame function
+  };
+
+  const instantiateSingleplayerGame = () => {
+    singlePlayer = true;
+    const newComputerInstance = {}
+    newComputerInstance.name = "Computer";
+    if (storageObject.activePlayerOne === null) {
+      storageObject.activePlayerOne = newComputerInstance;
+    } else {
+      storageObject.activePlayerTwo = newComputerInstance;
+    }
+    let storageString = JSON.stringify(storageObject)
+    localStorage.setItem("ticTacToe", storageString)
+    return renderGameBoard()
+    // End of instantiateSingleplayerGame function
+  }
 
   const resetActiveGame = () => {
     storageObject.activeGame = null;
@@ -146,7 +184,7 @@ const gameController = (() => {
     localStorage.setItem("ticTacToe", storageString);
   };
 
-  const renderGameBoard = (() => {
+  const renderGameBoard = () => {
     // Redirect
     let gameBoard = document.querySelector("#game-board-container");
     let rowNumber = 0;
@@ -180,7 +218,17 @@ const gameController = (() => {
       // End for loop
     };
     // End of renderGameBoard function
-  })();
+  };
+
+  const checkGameMode = (() => {
+    if (storageObject.activePlayerOne === null || storageObject.activePlayerTwo === null) {
+      instantiateSingleplayerGame()
+    } else {
+      instantiateMultiplayerGame()
+    }
+    return
+    // End of checkGameMode function
+  })()
 
   return {
     endTurn,

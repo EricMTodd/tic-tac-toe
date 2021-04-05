@@ -41,10 +41,15 @@ const viewsController = (() => {
   })()
 
   const verifyUsers = (() => {
-    if (storageObject.activePlayerOne === null || storageObject.activePlayerTwo === null) {
+    if (storageObject.activePlayerOne === null && storageObject.activePlayerTwo === null) {
       let statusMessage = document.createElement("p")
-      statusMessage.innerText = "Two players must be logged in to play."
+      statusMessage.innerText = "Log in one player to play against the computer. Login two, to play against each other!"
       document.querySelector("#game-mode-selection-container").appendChild(statusMessage)
+    } else if (storageObject.activePlayerOne !== null && storageObject.activePlayerTwo === null || storageObject.activePlayerOne === null && storageObject.activePlayerTwo !== null){
+      let statusMessage = document.createElement("p")
+      statusMessage.innerText = "Click start game to play against the computer, login another player to play against them!"
+      document.querySelector("#game-mode-selection-container").appendChild(statusMessage)
+      document.querySelector("#start-game-button").disabled = false
     } else {
       document.querySelector("#start-game-button").disabled = false
     }
