@@ -214,10 +214,10 @@ const gameController = (() => {
     storageObject.activeGame = null;
     let storageString = JSON.stringify(storageObject);
     localStorage.setItem("ticTacToe", storageString);
+    return
   };
 
   const renderGameBoard = () => {
-    // Redirect
     let gameBoard = document.querySelector("#game-board-container");
     let rowNumber = 0;
 

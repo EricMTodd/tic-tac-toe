@@ -1,6 +1,23 @@
 const viewsController = (() => {
   let storageObject = JSON.parse(localStorage.ticTacToe)
 
+  const verifyUsers = (() => {
+    if (storageObject.activePlayerOne === null && storageObject.activePlayerTwo === null) {
+      let statusMessage = document.createElement("p")
+      statusMessage.innerText = "Log in one player to play against the computer. Login two, to play against each other!"
+      document.querySelector("#game-mode-selection-container").appendChild(statusMessage)
+    } else if (storageObject.activePlayerOne !== null && storageObject.activePlayerTwo === null || storageObject.activePlayerOne === null && storageObject.activePlayerTwo !== null){
+      let statusMessage = document.createElement("p")
+      statusMessage.innerText = "Click start game to play against the computer, login another player to play against them!"
+      document.querySelector("#game-mode-selection-container").appendChild(statusMessage)
+      document.querySelector("#start-game-button").disabled = false
+    } else {
+      document.querySelector("#start-game-button").disabled = false
+    }
+    return
+    // End of verifyUsers function
+  })()
+
   const renderLeaderboard = (arr) => {
     // Render a list of users sorted by wins
     let leaderboardUsersList = document.querySelector("#leaderboard-users-list")
@@ -12,6 +29,8 @@ const viewsController = (() => {
     return
     // End of renderLeaderboard function
   }
+
+
 
   const sortUsersByWins = (() => {
     let usersList = storageObject.usersList
@@ -36,29 +55,13 @@ const viewsController = (() => {
       spliceIndex = 0  
     }
 
-    return renderLeaderboard(sortedList)
+    renderLeaderboard(sortedList)
+    return
     // End of findUserByWins function
   })()
 
-  const verifyUsers = (() => {
-    if (storageObject.activePlayerOne === null && storageObject.activePlayerTwo === null) {
-      let statusMessage = document.createElement("p")
-      statusMessage.innerText = "Log in one player to play against the computer. Login two, to play against each other!"
-      document.querySelector("#game-mode-selection-container").appendChild(statusMessage)
-    } else if (storageObject.activePlayerOne !== null && storageObject.activePlayerTwo === null || storageObject.activePlayerOne === null && storageObject.activePlayerTwo !== null){
-      let statusMessage = document.createElement("p")
-      statusMessage.innerText = "Click start game to play against the computer, login another player to play against them!"
-      document.querySelector("#game-mode-selection-container").appendChild(statusMessage)
-      document.querySelector("#start-game-button").disabled = false
-    } else {
-      document.querySelector("#start-game-button").disabled = false
-    }
-    return
-    // End of verifyUsers function
-  })()
-
   return {
-    renderLeaderboard,
-    verifyUsers,
+    // renderLeaderboard,
+    // verifyUsers,
   }
 })()

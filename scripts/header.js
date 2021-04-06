@@ -55,7 +55,7 @@ const headerController = (() => {
       </div>
     `;
     } else {
-      console.log("wtf");
+      return
     }
     // End of rednerIndexCardContainer function
   };
