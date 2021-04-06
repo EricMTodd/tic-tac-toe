@@ -43,6 +43,7 @@ const gameController = (() => {
     console.log(`randomNumber: ${randomNumber}`)
     if (document.querySelector(`#cell-${randomNumber}`).innerText !== "") {
       console.log("Space is occupied");
+     document.querySelector("#end-turn-button").disabled = true
       setTimeout(computerMark, 3000)
     } else {
       console.log("Space is not occupied")
@@ -51,6 +52,7 @@ const gameController = (() => {
       } else {
        document.querySelector(`#cell-${randomNumber}`).innerText = "0"
       }
+    document.querySelector("#end-turn-button").disabled = false
       return evaluateMarks()
     }
     // End of computerMark function
@@ -100,11 +102,13 @@ const gameController = (() => {
     if (storageObject.activeGame.currentTurn % 2 !== 0) {
       document.querySelector("#gameboard-turn-indicator").innerText = `It's ${storageObject.activeGame.oddTurns.name}'s turn.`;
       if (storageObject.activeGame.oddTurns.name === "Computer") {
+        document.querySelector("#end-turn-button").disabled = true
         setTimeout(computerMark, 3000)
       }
     } else {
       document.querySelector("#gameboard-turn-indicator").innerText = `It's ${storageObject.activeGame.evenTurns.name}'s turn.`;
       if (storageObject.activeGame.evenTurns.name === "Computer") {
+        document.querySelector("#end-turn-button").disabled = true
         setTimeout(computerMark, 3000)
       }
     };
@@ -200,6 +204,7 @@ const gameController = (() => {
     renderGameBoard()
 
     if (storageObject.activeGame.oddTurns.name === "Computer") {
+      document.querySelector("#end-turn-button").disabled = true
       setTimeout(computerMark, 3000)
     }
     return
