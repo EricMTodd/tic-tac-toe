@@ -2,7 +2,6 @@ const gameController = (() => {
   let storageObject = JSON.parse(localStorage.ticTacToe);
   let occupiedCells = [];
   let markedCell = "";
-  let singlePlayer = false;
   let gameOver = false;
 
   const setInitiative = () => {
@@ -37,6 +36,25 @@ const gameController = (() => {
     return markedCell;
     // End of markCell function
   };
+
+  const computerMark = () => {
+    console.log("Computer's turn")
+    let randomNumber = Math.floor(Math.random() * 9) + 1
+    console.log(`randomNumber: ${randomNumber}`)
+    if (document.querySelector(`#cell-${randomNumber}`).innerText !== "") {
+      console.log("Space is occupied");
+      setTimeout(computerMark, 3000)
+    } else {
+      console.log("Space is not occupied")
+      if (storageObject.activeGame.oddTurns.name === "Computer") {
+       document.querySelector(`#cell-${randomNumber}`).innerText = "X"
+      } else {
+       document.querySelector(`#cell-${randomNumber}`).innerText = "0"
+      }
+      return evaluateMarks()
+    }
+    // End of computerMark function
+  }
 
   const assignWin = (cell) => {
     let endTurnButton = document.querySelector("#end-turn-button");
@@ -74,39 +92,22 @@ const gameController = (() => {
     return;
   };
 
-  const computerMark = () => {
-    let randomNumber = Math.floor(Math.random() * 9) + 1
-    if (document.querySelector(`#cell-${randomNumber}`).innerText !== "") {
-      if (storageObject.activeGame.currentTurn % 2 !== 0) {
-        markedCell = document.querySelector(`#cell-${randomNumber}`)
-        markedCell.innerText = "X"
-      } else {
-        markedCell = document.querySelector(`#cell-${randomNumber}`)
-        markedCell.innerText = "O"
-      }
-    } else {
-      computerMark();
-    }
-    occupiedCells.push(markedCell);
-    markedCell = "";
-    storageObject.activeGame.currentTurn++;
-    return;
-  }
 
   const endTurn = () => {
-    if (singlePlayer = true) {
-      computerMark()
-    }
-
     occupiedCells.push(markedCell);
     markedCell = "";
     storageObject.activeGame.currentTurn++;
     if (storageObject.activeGame.currentTurn % 2 !== 0) {
       document.querySelector("#gameboard-turn-indicator").innerText = `It's ${storageObject.activeGame.oddTurns.name}'s turn.`;
+      if (storageObject.activeGame.oddTurns.name === "Computer") {
+        setTimeout(computerMark, 3000)
+      }
     } else {
       document.querySelector("#gameboard-turn-indicator").innerText = `It's ${storageObject.activeGame.evenTurns.name}'s turn.`;
+      if (storageObject.activeGame.evenTurns.name === "Computer") {
+        setTimeout(computerMark, 3000)
+      }
     };
-
     let storageString = JSON.stringify(storageObject);
     localStorage.setItem("ticTacToe", storageString);
   };
@@ -139,6 +140,7 @@ const gameController = (() => {
   };
 
   const instantiateMultiplayerGame = () => {
+    console.log("Multiplayer Instance")
     const newGame = Object.create(gameObjectModel);
     newGame.currentTurn = gameObjectModel.currentTurn;
     newGame.initiative = setInitiative();
@@ -164,7 +166,7 @@ const gameController = (() => {
   };
 
   const instantiateSingleplayerGame = () => {
-    singlePlayer = true;
+    console.log("Singleplayer Instance")
     const newComputerInstance = {}
     newComputerInstance.name = "Computer";
     if (storageObject.activePlayerOne === null) {
@@ -174,7 +176,33 @@ const gameController = (() => {
     }
     let storageString = JSON.stringify(storageObject)
     localStorage.setItem("ticTacToe", storageString)
-    return renderGameBoard()
+
+    const newGame = Object.create(gameObjectModel);
+    newGame.currentTurn = gameObjectModel.currentTurn;
+    newGame.initiative = setInitiative();
+
+    if (newGame.initiative === true) {
+      newGame.oddTurns = storageObject.activePlayerOne;
+      document.querySelector("#gameboard-turn-indicator").innerText = `${newGame.oddTurns.name} goes first!`;
+      newGame.evenTurns = storageObject.activePlayerTwo;
+    } else {
+      newGame.oddTurns = storageObject.activePlayerTwo;
+      document.querySelector("#gameboard-turn-indicator").innerText = `${newGame.oddTurns.name} goes first!`;
+      newGame.evenTurns = storageObject.activePlayerOne;
+      // End of if else
+    };
+
+    storageObject.activeGame = newGame;
+    storageObject.activeGame.currentTurn++;
+    storageString = JSON.stringify(storageObject);
+    localStorage.setItem("ticTacToe", storageString);
+
+    renderGameBoard()
+
+    if (storageObject.activeGame.oddTurns.name === "Computer") {
+      setTimeout(computerMark, 3000)
+    }
+    return
     // End of instantiateSingleplayerGame function
   }
 
@@ -221,7 +249,7 @@ const gameController = (() => {
   };
 
   const checkGameMode = (() => {
-    if (storageObject.activePlayerOne === null || storageObject.activePlayerTwo === null) {
+    if (storageObject.activePlayerOne === null || storageObject.activePlayerTwo === null || storageObject.activePlayerOne.name === "Computer" || storageObject.activePlayerTwo.name === "Computer") {
       instantiateSingleplayerGame()
     } else {
       instantiateMultiplayerGame()
