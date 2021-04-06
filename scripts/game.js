@@ -15,6 +15,10 @@ const gameController = (() => {
       return;
     };
 
+    if (document.querySelector("#gameboard-turn-indicator").innerText ===`It's Computer's turn.` || document.querySelector("#gameboard-turn-indicator").innerText === `Computer goes first!`) {
+      return
+    }
+
     if (occupiedCells.length > 0) {
       for (let i = 0; i < occupiedCells.length; i++) {
         if (occupiedCells[i].id === e.target.id) {
@@ -38,21 +42,17 @@ const gameController = (() => {
   };
 
   const computerMark = () => {
-    console.log("Computer's turn")
     let randomNumber = Math.floor(Math.random() * 9) + 1
-    console.log(`randomNumber: ${randomNumber}`)
     if (document.querySelector(`#cell-${randomNumber}`).innerText !== "") {
-      console.log("Space is occupied");
      document.querySelector("#end-turn-button").disabled = true
       setTimeout(computerMark, 3000)
     } else {
-      console.log("Space is not occupied")
       if (storageObject.activeGame.oddTurns.name === "Computer") {
        document.querySelector(`#cell-${randomNumber}`).innerText = "X"
       } else {
        document.querySelector(`#cell-${randomNumber}`).innerText = "0"
       }
-    document.querySelector("#end-turn-button").disabled = false
+      document.querySelector("#end-turn-button").disabled = false
       return evaluateMarks()
     }
     // End of computerMark function
@@ -144,7 +144,6 @@ const gameController = (() => {
   };
 
   const instantiateMultiplayerGame = () => {
-    console.log("Multiplayer Instance")
     const newGame = Object.create(gameObjectModel);
     newGame.currentTurn = gameObjectModel.currentTurn;
     newGame.initiative = setInitiative();
@@ -170,7 +169,6 @@ const gameController = (() => {
   };
 
   const instantiateSingleplayerGame = () => {
-    console.log("Singleplayer Instance")
     const newComputerInstance = {}
     newComputerInstance.name = "Computer";
     if (storageObject.activePlayerOne === null) {
