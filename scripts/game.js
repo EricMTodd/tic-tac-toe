@@ -52,6 +52,7 @@ const gameController = (() => {
       } else {
        document.querySelector(`#cell-${randomNumber}`).innerText = "0"
       }
+      markedCell = document.querySelector(`cell-${randomNumber}`)
       document.querySelector("#end-turn-button").disabled = false
       return evaluateMarks()
     }
