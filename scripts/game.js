@@ -44,7 +44,7 @@ const gameController = (() => {
     if (document.querySelector(`#cell-${randomNumber}`).innerText !== "") {
       console.log("Space is occupied");
      document.querySelector("#end-turn-button").disabled = true
-      computerMark()
+      setTimeout(computerMark, 3000)
     } else {
       console.log("Space is not occupied")
       if (storageObject.activeGame.oddTurns.name === "Computer") {
